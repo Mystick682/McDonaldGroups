@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admissions Portal - BOUESTI Ibadan</title>
+    <title>Admissions Portal - BOUESTI</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts (Inter) -->
@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Supabase JS Client library -->
+    <!-- Supabase JS Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
@@ -35,28 +35,6 @@
             }
         }
     </script>
-    <style>
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #printable-slip, #printable-slip * {
-                visibility: visible;
-            }
-            #printable-slip {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                border: none;
-                box-shadow: none;
-                padding: 0;
-            }
-            .no-print {
-                display: none !important;
-            }
-        }
-    </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-brand-lightBg overflow-x-hidden">
 
@@ -66,15 +44,14 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo Block -->
                 <div class="flex items-center space-x-3">
-                <!-- Circle frame for your logo image -->
-                <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
-                    <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                    <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                        <img src="assets/logo.jpg" alt="BUESTI Logo" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI</div>
+                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Affiliate Programme</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI</div>
-                    <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Affiliate Programme</div>
-                </div>
-            </div>
 
                 <!-- Tab switcher for desktop -->
                 <div class="hidden md:flex items-center space-x-4 bg-slate-100 p-1 rounded-lg">
@@ -86,11 +63,11 @@
                     </button>
                 </div>
 
-                <!-- Navigation Hamburger Trigger Button (Universal) -->
-                <div class="flex items-center space-x-3">
-                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none p-2 rounded-md hover:bg-slate-100 transition flex items-center gap-2 border border-slate-200 px-3">
-                        <i class="fa-solid fa-bars text-lg"></i>
-                        <span class="hidden md:inline text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
+                <!-- Universal MENU Button (Always Visible) -->
+                <div>
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
                     </button>
                 </div>
             </div>
@@ -100,59 +77,49 @@
     <!-- Navigation Drawer Overlay (Backdrop) -->
     <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300 no-print"></div>
 
-    <!-- Navigation Drawer (Left Slide Drawer) -->
+    <!-- Navigation Drawer (White Background Restored) -->
     <div id="mobile-drawer" class="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col no-print">
-        <!-- Drawer Header -->
+        <!-- Drawer Header with Logo -->
         <div class="flex items-center justify-between p-5 border-b border-gray-100">
             <div class="flex items-center space-x-3">
-                <!-- Circle frame for your logo image -->
-                <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
-                    <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                <div class="w-8 h-8 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                    <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-0.5">
                 </div>
                 <div>
-                    <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI</div>
-                    <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Affiliate Programme</div>
+                    <div class="text-base font-extrabold text-brand-green leading-none">BOUESTI</div>
+                    <div class="text-[8px] font-bold text-brand-green tracking-wider uppercase mt-1 leading-none">Affiliate Programme</div>
                 </div>
             </div>
-            <button id="close-drawer-btn" class="text-slate-500 hover:text-brand-green p-1 focus:outline-none">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button id="close-drawer-btn" class="text-slate-400 hover:text-brand-green p-1 focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
         </div>
         
-        <!-- Drawer Menu Items -->
-        <div class="flex-1 overflow-y-auto px-5 py-6 space-y-3">
-            <a href="login.html" class="block px-3 py-2.5 rounded-md text-brand-green font-semibold bg-green-50/70 text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-user-graduate text-base"></i>
+        <!-- Drawer Menu List -->
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+            <a href="dashboard.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
+                <i class="fa-solid fa-graduation-cap text-base shrink-0"></i>
                 <span>Student Portal Dashboard</span>
             </a>
-            <a href="programmes.html" class="block px-3 py-2.5 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-graduation-cap text-base"></i>
+            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
                 <span>Available Programmes</span>
             </a>
-            <a href="#" class="block px-3 py-2.5 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-circle-info text-base"></i>
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-circle-info text-base text-slate-400 shrink-0"></i>
                 <span>Admission Requirements</span>
             </a>
-            <hr class="border-slate-100 my-2">
-            <a href="#" class="block px-3 py-2.5 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-headset text-base"></i>
+            <a href="support.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-headset text-base text-slate-400 shrink-0"></i>
                 <span>Support & Helpdesk</span>
             </a>
-            <a href="#" class="block px-3 py-2.5 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-question-circle text-base"></i>
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-circle-question text-base text-slate-400 shrink-0"></i>
                 <span>Frequently Asked Questions</span>
             </a>
-            <a href="#" class="block px-3 py-2.5 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm flex items-center gap-3 transition">
-                <i class="fa-solid fa-envelope text-base"></i>
+            <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-envelope text-base text-slate-400 shrink-0"></i>
                 <span>Contact Directorate</span>
-            </a>
-        </div>
-        
-        <!-- Drawer Footer -->
-        <div class="p-5 border-t border-gray-100">
-            <a href="tel:09150739629" class="w-full bg-brand-green hover:bg-brand-hoverGreen text-white py-3 rounded-md font-medium text-sm flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-solid fa-phone"></i>
-                <span>Enquiries Hotline</span>
             </a>
         </div>
     </div>
@@ -162,8 +129,7 @@
         
         <!-- ==================== VIEW 1: APPLY TAB ==================== -->
         <div id="tab-apply-view" class="space-y-8">
-            
-            <!-- Step Indicator Panel -->
+            <!-- Step Indicator -->
             <div id="step-indicator-wrapper" class="mb-8 no-print">
                 <div class="flex items-center justify-between max-w-lg mx-auto">
                     <div class="flex flex-col items-center">
@@ -183,7 +149,7 @@
                 </div>
             </div>
 
-            <!-- Application Form container -->
+            <!-- Form Card -->
             <div id="application-card" class="bg-white rounded-2xl shadow-md border border-slate-100 p-6 sm:p-10 no-print">
                 <form id="admission-form" class="space-y-8" onsubmit="submitApplication(event)">
                     
@@ -267,75 +233,75 @@
                             <p class="text-xs text-slate-400 mt-1">Provide your exam details (Requires at least 5 O'level credits).</p>
                         </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Type</label>
-                            <select id="inp-exam-type" class="w-full p-3 border border-slate-200 rounded-lg text-sm bg-white">
-                                <option value="WAEC">WAEC</option>
-                                <option value="NECO">NECO</option>
-                                <option value="NABTEB">NABTEB</option>
-                                <option value="GCE">GCE</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Year</label>
-                            <input type="text" id="inp-exam-year" placeholder="e.g. 2025" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Registration No.</label>
-                            <input type="text" id="inp-exam-no" placeholder="e.g. 4239824052" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
-                        </div>
-                    </div>
-
-                    <!-- Subjects Checklist -->
-                    <div class="space-y-3 pt-2">
-                        <span class="block text-xs font-bold text-slate-700 uppercase tracking-wider">O'Level Subject & Grades</span>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="flex items-center space-x-2">
-                                <input type="text" value="English Language" readonly class="bg-slate-50 p-2 border border-slate-200 rounded text-xs flex-1">
-                                <select id="grade-english" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
-                                    <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
-                                    <option value="C4" selected>C4</option><option value="C5">C5</option><option value="C6">C6</option>
-                                </select>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="text" value="Mathematics" readonly class="bg-slate-50 p-2 border border-slate-200 rounded text-xs flex-1">
-                                <select id="grade-math" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
-                                    <option value="A1">A1</option><option value="B2">B2</option><option value="B3" selected>B3</option>
-                                    <option value="C4">C4</option><option value="C5">C5</option><option value="C6">C6</option>
-                                </select>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="text" placeholder="Subject 3 (e.g. Physics)" id="subject-3" class="p-2 border border-slate-200 rounded text-xs flex-1">
-                                <select id="grade-3" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
-                                    <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
-                                    <option value="C4">C4</option><option value="C5">C5</option><option value="C6" selected>C6</option>
-                                </select>
-                            </div>
-                            <div class="flex items-center space-x-2">
-                                <input type="text" placeholder="Subject 4 (e.g. Chemistry)" id="subject-4" class="p-2 border border-slate-200 rounded text-xs flex-1">
-                                <select id="grade-4" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
-                                    <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
-                                    <option value="C4">C4</option><option value="C5">C5</option><option value="C6" selected>C6</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Direct Entry Section -->
-                    <div id="de-extra-panel" class="hidden border-t border-slate-100 pt-6 space-y-4">
-                        <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Direct Entry Credentials</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-2">Institution</label>
-                                <input type="text" id="inp-de-institution" placeholder="e.g. Federal Polytechnic" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Type</label>
+                                <select id="inp-exam-type" class="w-full p-3 border border-slate-200 rounded-lg text-sm bg-white">
+                                    <option value="WAEC">WAEC</option>
+                                    <option value="NECO">NECO</option>
+                                    <option value="NABTEB">NABTEB</option>
+                                    <option value="GCE">GCE</option>
+                                </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-2">Class of Grade / Merit</label>
-                                <input type="text" id="inp-de-grade" placeholder="e.g. Upper Credit" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Year</label>
+                                <input type="text" id="inp-exam-year" placeholder="e.g. 2025" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Exam Registration No.</label>
+                                <input type="text" id="inp-exam-no" placeholder="e.g. 4239824052" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
                             </div>
                         </div>
-                    </div>
+
+                        <!-- Subjects Checklist -->
+                        <div class="space-y-3 pt-2">
+                            <span class="block text-xs font-bold text-slate-700 uppercase tracking-wider">O'Level Subject & Grades</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex items-center space-x-2">
+                                    <input type="text" value="English Language" readonly class="bg-slate-50 p-2 border border-slate-200 rounded text-xs flex-1">
+                                    <select id="grade-english" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
+                                        <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
+                                        <option value="C4" selected>C4</option><option value="C5">C5</option><option value="C6">C6</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="text" value="Mathematics" readonly class="bg-slate-50 p-2 border border-slate-200 rounded text-xs flex-1">
+                                    <select id="grade-math" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
+                                        <option value="A1">A1</option><option value="B2">B2</option><option value="B3" selected>B3</option>
+                                        <option value="C4">C4</option><option value="C5">C5</option><option value="C6">C6</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="text" placeholder="Subject 3 (e.g. Physics)" id="subject-3" class="p-2 border border-slate-200 rounded text-xs flex-1">
+                                    <select id="grade-3" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
+                                        <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
+                                        <option value="C4">C4</option><option value="C5">C5</option><option value="C6" selected>C6</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <input type="text" placeholder="Subject 4 (e.g. Chemistry)" id="subject-4" class="p-2 border border-slate-200 rounded text-xs flex-1">
+                                    <select id="grade-4" class="p-2 border border-slate-200 rounded text-xs bg-white w-20">
+                                        <option value="A1">A1</option><option value="B2">B2</option><option value="B3">B3</option>
+                                        <option value="C4">C4</option><option value="C5">C5</option><option value="C6" selected>C6</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Entry Section -->
+                        <div id="de-extra-panel" class="hidden border-t border-slate-100 pt-6 space-y-4">
+                            <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Direct Entry Credentials</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-2">Institution</label>
+                                    <input type="text" id="inp-de-institution" placeholder="e.g. Federal Polytechnic" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-600 mb-2">Class of Grade / Merit</label>
+                                    <input type="text" id="inp-de-grade" placeholder="e.g. Upper Credit" class="w-full p-3 border border-slate-200 rounded-lg text-sm">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="flex justify-between pt-4 border-t border-slate-100">
                             <button type="button" onclick="goToStep(1)" class="border border-slate-200 hover:bg-slate-50 text-slate-600 px-6 py-2.5 rounded-lg font-semibold text-sm">
@@ -347,11 +313,23 @@
                         </div>
                     </div>
 
-                    <!-- STEP 3: Payment & Verification -->
+                    <!-- STEP 3: Payment, Uploads & Verification -->
                     <div id="step-3" class="step-container space-y-6 hidden">
                         <div class="border-b border-slate-100 pb-4">
                             <h2 class="text-xl font-extrabold text-slate-800">Verification & Submission</h2>
-                            <p class="text-xs text-slate-400 mt-1">Verify payment reference to finalize submission.</p>
+                            <p class="text-xs text-slate-400 mt-1">Upload your credentials and verify payment reference to finalize submission.</p>
+                        </div>
+
+                        <!-- Real Document Upload inputs -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-1">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Passport Photograph (JPEG/PNG) <span class="text-rose-500">*</span></label>
+                                <input type="file" id="inp-passport-file" required accept="image/*" class="w-full p-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-brand-green hover:file:bg-emerald-100">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">O'Level Result Sheet (PDF/Image) <span class="text-rose-500">*</span></label>
+                                <input type="file" id="inp-result-file" required accept="image/*,application/pdf" class="w-full p-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-emerald-50 file:text-brand-green hover:file:bg-emerald-100">
+                            </div>
                         </div>
 
                         <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 space-y-3">
@@ -384,28 +362,28 @@
             <div id="processing-screen" class="hidden bg-white border border-slate-100 rounded-2xl p-16 shadow-md text-center space-y-4">
                 <div class="w-16 h-16 border-4 border-brand-green border-t-transparent rounded-full animate-spin mx-auto"></div>
                 <h3 class="text-slate-800 font-extrabold text-lg">Submitting to Supabase Server</h3>
-                <p class="text-slate-400 text-xs max-w-sm mx-auto">Uploading your bio-data and qualifications to the university cloud directory...</p>
+                <p class="text-slate-400 text-xs max-w-sm mx-auto">Uploading your bio-data, passport photograph, and O'level sheet to the university cloud directory...</p>
             </div>
 
             <!-- Printable Slip (Success Screen) -->
             <div id="printable-slip" class="hidden bg-white border border-slate-200 rounded-2xl shadow-xl p-8 sm:p-12 space-y-8 max-w-2xl mx-auto">
                 <div class="flex items-center justify-between border-b-2 border-slate-100 pb-6">
                     <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full border-2 border-yellow-400 bg-brand-green flex items-center justify-center text-white font-bold">B</div>
+                        <div class="w-12 h-12 rounded-full border border-yellow-400/60 bg-brand-green flex items-center justify-center text-white font-bold shrink-0">B</div>
                         <div>
                             <h2 class="text-lg font-black text-slate-800">BOUESTI</h2>
-                            <p class="text-[9px] font-bold text-emerald-800 uppercase tracking-widest">Part-Time Programmes</p>
+                            <p class="text-[9px] font-bold text-emerald-800 uppercase tracking-widest leading-none">Directorate of Part-Time Programmes</p>
                         </div>
                     </div>
                     <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">Application Logged</span>
                 </div>
 
                 <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-5 flex items-start space-x-3 no-print">
-                    <i class="fa-solid fa-circle-check text-emerald-600 text-xl mt-0.5"></i>
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-xl mt-0.5 animate-bounce"></i>
                     <div>
-                        <h3 class="text-sm font-extrabold text-emerald-900">Successfully Saved to Supabase!</h3>
+                        <h3 class="text-sm font-extrabold text-emerald-900">Application Saved Successfully!</h3>
                         <p class="text-slate-600 text-xs mt-1 leading-relaxed">
-                            Your application record has been secured. Your generated **Identification Number** is shown below. Please check your status dashboard periodically.
+                            Your credentials, documents, and payment reference have been verified and secured. Your generated **Identification Number** is shown below. Please check your status dashboard periodically.
                         </p>
                     </div>
                 </div>
@@ -448,7 +426,7 @@
                 </div>
 
                 <div class="max-w-md mx-auto flex flex-col sm:flex-row items-stretch gap-2">
-                    <input type="text" id="search-id" placeholder="e.g. BOUESTI/IBD/2026/12345" class="flex-1 p-3 border border-slate-200 rounded-lg text-sm uppercase text-center font-bold tracking-wider focus:border-brand-green focus:outline-none">
+                    <input type="text" id="search-id" placeholder="e.g. BUESTI/IBD/2026/12345" class="flex-1 p-3 border border-slate-200 rounded-lg text-sm uppercase text-center font-bold tracking-wider focus:border-brand-green focus:outline-none">
                     <button onclick="queryStatus()" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-6 py-3 rounded-lg font-bold text-sm transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-circle-nodes"></i>
                         <span>Check Status</span>
@@ -467,7 +445,7 @@
                 <!-- Status Approved Card -->
                 <div id="card-approved" class="hidden bg-white border border-emerald-100 rounded-2xl p-8 shadow-md space-y-6">
                     <div class="flex items-center space-x-4">
-                        <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="w-12 h-12 rounded-full bg-emerald-50 text-brand-green flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-circle-check"></i></div>
                         <div>
                             <h3 class="text-lg font-black text-emerald-900">Congratulations!</h3>
                             <p class="text-slate-500 text-xs">Your application has been verified and accepted by the Directorate.</p>
@@ -492,6 +470,7 @@
                     <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center text-xl shrink-0"><i class="fa-solid fa-clock-rotate-left"></i></div>
                     <div>
                         <h3 class="text-base font-extrabold text-amber-900">Admission Processing</h3>
+                        <!-- Status Pending Applicant Name (Restored) -->
                         <p id="res-pending-name" class="text-sm font-bold text-slate-800 mt-1"></p>
                         <p class="text-slate-500 text-xs mt-1 leading-relaxed">
                             Your O'Level qualifications and bank reference are currently being verified by the Ibadan Study Centre. Please check back after 24-48 hours.
@@ -520,17 +499,16 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3">
-                    <!-- Circle frame for your logo image -->
-                    <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
-                        <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                        <div class="w-9 h-9 rounded-full border border-yellow-400/70 bg-brand-green flex items-center justify-center text-white font-bold text-sm">
+                            B
+                        </div>
+                        <div>
+                            <div class="text-lg font-bold text-white tracking-wide">BOUESTI</div>
+                            <div class="text-[8px] font-bold text-slate-400 tracking-widest uppercase">Ibadan Campus</div>
+                        </div>
                     </div>
-                    <div>
-                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI</div>
-                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Affiliate Programme</div>
-                    </div>
-                </div>
                     <p class="text-xs text-slate-400 leading-relaxed pt-2">
-                        BUET Scientific & Technological Institute (BOUESTI) Affiliate Programme – Expanding access to quality higher education.
+                        Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes.
                     </p>
                 </div>
 
@@ -574,17 +552,16 @@
 
     <!-- Supabase JavaScript Initialization -->
     <script>
-        // --- Put your genuine Supabase URL and Key here ---
+        // REPLACE THESE WITH YOUR OWN SUPABASE PROJECT KEYS
         const SUPABASE_URL = "https://rcuvjxdeosgdlkmrokse.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjdXZqeGRlb3NnZGxrbXJva3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzMzcyNTgsImV4cCI6MjA5ODkxMzI1OH0.SCd5DK4b0gwZEhToZpna0ulMI4ZECeTNHLTPlRSQfug";
-
-        // Initialize Supabase Client
+        // Initialize connection client
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     </script>
 
     <!-- Frontend Interactive UI Engine -->
     <script>
-        // --- Navigation Drawer (Universal Mobile & Desktop Toggle) ---
+        // --- Navigation Drawer (Mobile View) ---
         const menuBtn = document.getElementById('mobile-menu-btn');
         const closeBtn = document.getElementById('close-drawer-btn');
         const drawer = document.getElementById('mobile-drawer');
@@ -717,15 +694,40 @@
 
             // Generate Unique ID
             const randomIdSuffix = Math.floor(10000 + Math.random() * 90000);
-            const generatedApplicationId = `BOUESTI/IBD/2026/${randomIdSuffix}`;
+            const generatedApplicationId = `BUESTI/IBD/2026/${randomIdSuffix}`;
 
             // Show Loader
             formCard?.classList.add('hidden');
             stepIndicator?.classList.add('hidden');
             processingScreen?.classList.remove('hidden');
 
-            // Send payload to Supabase DB
             try {
+                // --- UPLOAD PASSPORT PHOTOGRAPH TO SUPABASE STORAGE BUCKET ---
+                const passportInput = document.getElementById('inp-passport-file');
+                const passportFile = passportInput.files[0];
+                let passportUrl = null;
+
+                if (passportFile) {
+                    const fileExt = passportFile.name.split('.').pop();
+                    const uniqueFileName = `${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+                    
+                    const { data: uploadData, error: uploadError } = await supabaseClient
+                        .storage
+                        .from('passports')
+                        .upload(uniqueFileName, passportFile);
+
+                    if (uploadError) throw uploadError;
+
+                    // Fetch the public link generated by storage
+                    const { data: urlData } = supabaseClient
+                        .storage
+                        .from('passports')
+                        .getPublicUrl(uniqueFileName);
+                    
+                    passportUrl = urlData.publicUrl;
+                }
+
+                // Send payload to Supabase DB, including passport_url link
                 const { data, error } = await supabaseClient
                     .from('applications')
                     .insert([
@@ -746,7 +748,8 @@
                             institution: institution,
                             grade_merit: gradeMerit,
                             payment_reference: paymentRef,
-                            status: 'pending' // default status
+                            status: 'pending', // default status
+                            passport_url: passportUrl // Saved passport photo url link
                         }
                     ]);
 
@@ -805,7 +808,7 @@
                 loader?.classList.add('hidden');
 
                 if (!data) {
-                    alert("Application ID not found. Ensure you type the generated format: BOUESTI/IBD/2026/XXXXX");
+                    alert("Application ID not found. Ensure you type the generated format: BUESTI/IBD/2026/XXXXX");
                     return;
                 }
 

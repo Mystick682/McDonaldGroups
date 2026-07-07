@@ -46,7 +46,7 @@
             <div class="flex items-center space-x-3">
                 <!-- Circle frame for your logo image -->
                 <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
-                    <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                    <img src="assets/logo.jpg" alt="BUESTI Logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
                     <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI</div>
@@ -144,7 +144,11 @@
             </button>
             <span class="text-sm font-black text-brand-green tracking-wide">BOUESTI PORTAL</span>
         </div>
-        <div class="w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-xs font-bold student-initials">JD</div>
+        <!-- Circle frame for mobile header profile picture -->
+        <div class="w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center text-xs font-bold overflow-hidden shrink-0 border border-slate-100">
+            <img id="mobile-header-avatar" class="w-full h-full object-cover hidden" src="" alt="Student Avatar">
+            <span id="mobile-header-placeholder" class="student-initials">JD</span>
+        </div>
     </header>
 
     <!-- Backdrop for mobile menu drawer -->
@@ -159,8 +163,10 @@
                 <span class="block text-xs font-bold text-slate-800 leading-none">Welcome, <span class="student-name">Loading...</span></span>
                 <span class="text-[10px] text-slate-400 font-medium mt-1 block">Matric No: <span class="student-matric">Loading...</span></span>
             </div>
-            <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-brand-green border border-slate-200">
-                <i class="fa-regular fa-user"></i>
+            <!-- Circle frame for top bar header profile picture -->
+            <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-brand-green border border-slate-200 overflow-hidden shrink-0">
+                <img id="header-avatar" class="w-full h-full object-cover hidden" src="" alt="Student Avatar">
+                <span id="header-placeholder"><i class="fa-regular fa-user"></i></span>
             </div>
         </header>
 
@@ -176,8 +182,10 @@
             <!-- Dynamic Profile Metadata Card -->
             <section class="bg-white rounded-2xl border border-slate-100 p-6 sm:p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden">
                 <div class="flex items-center space-x-4 shrink-0">
-                    <div class="w-16 h-16 rounded-full bg-emerald-50 text-brand-green flex items-center justify-center text-2xl border border-emerald-100">
-                        <i class="fa-regular fa-user-circle"></i>
+                    <!-- Circle frame for main profile card picture -->
+                    <div class="w-16 h-16 rounded-full bg-emerald-50 text-brand-green flex items-center justify-center text-2xl border border-emerald-100 overflow-hidden shrink-0">
+                        <img id="card-avatar" class="w-full h-full object-cover hidden" src="" alt="Student Avatar">
+                        <span id="card-placeholder"><i class="fa-regular fa-user-circle"></i></span>
                     </div>
                     <div class="space-y-1">
                         <h2 class="text-lg font-black text-slate-800 leading-none student-name">Loading...</h2>
@@ -215,7 +223,7 @@
                     <div class="space-y-2">
                         <div class="w-8 h-8 rounded bg-emerald-50 text-brand-green flex items-center justify-center text-sm"><i class="fa-regular fa-file-lines"></i></div>
                         <h3 class="font-black text-slate-800 text-xs uppercase tracking-wide">Apply for Admission</h3>
-                        <p class="text-[10px] text-slate-400 leading-relaxed">Start your admission application.</p>
+                        <p class="text-[10px] text-slate-400 text-xs leading-relaxed">Start your admission application.</p>
                     </div>
                     <a href="apply.html" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-brand-green font-bold text-center text-[10px] rounded transition">Apply Now</a>
                 </div>
@@ -225,9 +233,9 @@
                     <div class="space-y-2">
                         <div class="w-8 h-8 rounded bg-emerald-50 text-brand-green flex items-center justify-center text-sm"><i class="fa-solid fa-magnifying-glass"></i></div>
                         <h3 class="font-black text-slate-800 text-xs uppercase tracking-wide">Check Status</h3>
-                        <p class="text-[10px] text-slate-400 leading-relaxed">Check the status of your admission application.</p>
+                        <p class="text-[10px] text-slate-400 text-xs leading-relaxed">Check the status of your admission application.</p>
                     </div>
-                    <a href="apply.html" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-brand-green font-bold text-center text-[10px] rounded transition">Check Status</a>
+                    <a href="portal.html#status" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-brand-green font-bold text-center text-[10px] rounded transition">Check Status</a>
                 </div>
 
                 <!-- Action 3: Register Courses -->
@@ -235,7 +243,7 @@
                     <div class="space-y-2">
                         <div class="w-8 h-8 rounded bg-emerald-50 text-brand-green flex items-center justify-center text-sm"><i class="fa-solid fa-book-bookmark"></i></div>
                         <h3 class="font-black text-slate-800 text-xs uppercase tracking-wide">Register Courses</h3>
-                        <p class="text-[10px] text-slate-400 leading-relaxed">Register for courses for the current session.</p>
+                        <p class="text-[10px] text-slate-400 text-xs leading-relaxed">Register for courses for the current session.</p>
                     </div>
                     <a href="#" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-brand-green font-bold text-center text-[10px] rounded transition">Register</a>
                 </div>
@@ -245,7 +253,7 @@
                     <div class="space-y-2">
                         <div class="w-8 h-8 rounded bg-emerald-50 text-brand-green flex items-center justify-center text-sm"><i class="fa-solid fa-receipt"></i></div>
                         <h3 class="font-black text-slate-800 text-xs uppercase tracking-wide">Pay All Fees</h3>
-                        <p class="text-[10px] text-slate-400 leading-relaxed">Make payments for all your fees.</p>
+                        <p class="text-[10px] text-slate-400 text-xs leading-relaxed">Make payments for all your fees.</p>
                     </div>
                     <a href="payments.html" class="w-full py-2 bg-emerald-50 hover:bg-emerald-100 text-brand-green font-bold text-center text-[10px] rounded transition">Pay Now</a>
                 </div>
@@ -255,7 +263,7 @@
                     <div class="space-y-2">
                         <div class="w-8 h-8 rounded bg-amber-50 text-amber-600 flex items-center justify-center text-sm"><i class="fa-solid fa-wallet"></i></div>
                         <h3 class="font-black text-slate-800 text-xs uppercase tracking-wide">School Fees Balance</h3>
-                        <p class="text-[10px] text-slate-400 leading-relaxed">View your school fees balance statement.</p>
+                        <p class="text-[10px] text-slate-400 text-xs leading-relaxed">View your school fees balance statement.</p>
                     </div>
                     <a href="payments.html" class="w-full py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold text-center text-[10px] rounded transition">View Balance</a>
                 </div>
@@ -547,6 +555,43 @@
                 summaryBalance.className = "font-bold text-rose-600";
                 badge.className = "px-3 py-1 rounded-full bg-rose-50 text-rose-700 font-bold text-[10px] inline-block";
                 badge.innerText = "Outstanding Balance";
+            }
+
+            // --- 5. RENDER STUDENT PASSPORT PHOTO DYNAMICALLY ---
+            const headerAvatar = document.getElementById('header-avatar');
+            const headerPlaceholder = document.getElementById('header-placeholder');
+            const cardAvatar = document.getElementById('card-avatar');
+            const cardPlaceholder = document.getElementById('card-placeholder');
+            const mobileAvatar = document.getElementById('mobile-header-avatar');
+            const mobilePlaceholder = document.getElementById('mobile-header-placeholder');
+
+            if (student.passport_url) {
+                // Display the real picture and hide the icon placeholder
+                headerAvatar.src = student.passport_url;
+                headerAvatar.classList.remove('hidden');
+                headerPlaceholder.classList.add('hidden');
+
+                cardAvatar.src = student.passport_url;
+                cardAvatar.classList.remove('hidden');
+                cardPlaceholder.classList.add('hidden');
+
+                if (mobileAvatar) {
+                    mobileAvatar.src = student.passport_url;
+                    mobileAvatar.classList.remove('hidden');
+                    mobilePlaceholder.classList.add('hidden');
+                }
+            } else {
+                // Fallback to default placeholder if no image URL is found
+                headerAvatar.classList.add('hidden');
+                headerPlaceholder.classList.remove('hidden');
+
+                cardAvatar.classList.add('hidden');
+                cardPlaceholder.classList.remove('hidden');
+
+                if (mobileAvatar) {
+                    mobileAvatar.classList.add('hidden');
+                    mobilePlaceholder.classList.remove('hidden');
+                }
             }
         }
 

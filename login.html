@@ -385,6 +385,7 @@
 
             try {
                 // 1. Verify if matriculation number exists in application index & is approved
+                // Retrieve the approved application including the 'passport_url'
                 const { data: appData, error: appErr } = await supabaseClient
                     .from('applications')
                     .select('*')
@@ -413,7 +414,7 @@
                     return;
                 }
 
-                // 3. Save details to student_accounts table in Supabase
+                // 3. Save details to student_accounts table in Supabase, copying the passport_url
                 const { error: insertErr } = await supabaseClient
                     .from('student_accounts')
                     .insert([
@@ -422,7 +423,8 @@
                             full_name: fullName,
                             email: email,
                             phone: phone,
-                            password: password // Saved securely
+                            password: password,
+                            passport_url: appData.passport_url || null // Copies the verified passport photo url
                         }
                     ]);
 
