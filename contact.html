@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - McDonalds Educational Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e5c33',
+                            hoverGreen: '#0a4224',
+                            navy: '#011c11',
+                            gold: '#dfa510',
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-brand-lightBg overflow-x-hidden">
+
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                        <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
+                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Home</a>
+                    <a href="about.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">About Us</a>
+                    <a href="programmes.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Programmes</a>
+                    <a href="admissions.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Admissions</a>
+                    <a href="contact.html" class="text-brand-green font-semibold text-sm transition-colors">Contact Us</a>
+                </nav>
+
+                <div class="hidden lg:flex items-center">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-2.5 rounded-md font-medium text-sm flex items-center gap-2 transition duration-200 shadow-sm">
+                        <i class="fa-regular fa-user text-xs"></i>
+                        <span>Student Portal</span>
+                    </a>
+                </div>
+
+                <div class="flex lg:hidden items-center">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <div id="mobile-drawer" class="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-gray-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                    <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-0.5">
+                </div>
+                <div>
+                    <div class="text-base font-extrabold text-brand-green leading-none">McDONALDS</div>
+                    <div class="text-[8px] font-bold text-brand-green tracking-wider uppercase mt-1 leading-none">Educational Services</div>
+                </div>
+            </div>
+            <button id="close-drawer-btn" class="text-slate-400 hover:text-brand-green p-1 focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+            <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-house text-base text-slate-400 shrink-0"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-circle-info text-base text-slate-400 shrink-0"></i>
+                <span>About Us</span>
+            </a>
+            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
+                <span>Programmes</span>
+            </a>
+            <a href="apply.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-file-lines text-base text-slate-400 shrink-0"></i>
+                <span>Admissions</span>
+            </a>
+            <a href="contact.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
+                <i class="fa-solid fa-envelope text-base shrink-0"></i>
+                <span>Contact Us</span>
+            </a>
+            <a href="login.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-right-to-bracket text-base text-slate-400 shrink-0"></i>
+                <span>Student Portal</span>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <section class="bg-brand-navy text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+                <div class="max-w-3xl">
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">Get in touch</p>
+                    <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Contact McDonalds Educational Services</h1>
+                    <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed">
+                        We are here to help with admissions, programme information, student support, and any questions about our affiliated services.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                        <h2 class="text-xl font-bold text-slate-800">Reach us directly</h2>
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-800">Visit us</p>
+                                    <p class="text-sm text-slate-600">Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-800">Call us</p>
+                                    <p class="text-sm text-slate-600">+234 803 123 4567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-800">Email us</p>
+                                    <p class="text-sm text-slate-600">affiliate@buesti.edu.ng</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6">
+                        <h3 class="text-lg font-bold text-slate-800">Need help with admission?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+                            Our support team can guide you through application steps, payment options, and required documents.
+                        </p>
+                        <a href="login.html" class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-brand-green hover:text-brand-hoverGreen">
+                            <span>Open Student Portal</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <h2 class="text-xl font-bold text-slate-800">Send us a message</h2>
+                    <form class="mt-6 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Full name</label>
+                                <input type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Email address</label>
+                                <input type="email" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="you@example.com">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Phone number</label>
+                                <input type="tel" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="0803 000 0000">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
+                                <input type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="How can we help?">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+                            <textarea rows="5" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="Tell us more about your inquiry..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full sm:w-auto bg-brand-green hover:bg-brand-hoverGreen text-white px-6 py-3 rounded-lg font-semibold transition duration-200">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#01140c] text-slate-300 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                            <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-1">
+                        </div>
+                        <div>
+                            <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI/McDONALDS</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Ibadan Study Centre</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed pt-2">
+                        Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Location - Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Quick Links</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="programmes.html" class="hover:text-white transition">Programmes</a></li>
+                        <li><a href="admissions.html" class="hover:text-white transition">Admissions</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Resources</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="login.html" class="hover:text-white transition">Student Portal</a></li>
+                        <li><a href="faqs.html" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition">Downloads</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Contact Us</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
+                            <span>Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-emerald-600"></i>
+                            <span>+234 803 123 4567</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-emerald-600"></i>
+                            <span>affiliate@buesti.edu.ng</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800/80 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 BOUESTI/McDONALDS Educational Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-drawer-btn');
+        const overlay = document.getElementById('mobile-overlay');
+        const drawer = document.getElementById('mobile-drawer');
+
+        const openDrawer = () => {
+            overlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                overlay.classList.remove('opacity-0');
+                overlay.classList.add('opacity-100');
+                drawer.classList.remove('-translate-x-full');
+            });
+        };
+
+        const closeDrawer = () => {
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
+            drawer.classList.add('-translate-x-full');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        };
+
+        menuBtn?.addEventListener('click', openDrawer);
+        closeBtn?.addEventListener('click', closeDrawer);
+        overlay?.addEventListener('click', closeDrawer);
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeDrawer();
+        });
+    </script>
+    <style>
+        :root { color-scheme: light; }
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark header,
+        body.dark main,
+        body.dark aside,
+        body.dark .bg-white,
+        body.dark .bg-slate-50,
+        body.dark .bg-slate-100,
+        body.dark .bg-brand-lightBg,
+        body.dark .bg-brand-navy,
+        body.dark .rounded-2xl,
+        body.dark .rounded-xl,
+        body.dark .rounded-lg {
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+        }
+        body.dark .text-slate-800,
+        body.dark .text-slate-700,
+        body.dark .text-slate-600,
+        body.dark .text-slate-500,
+        body.dark .text-gray-800,
+        body.dark .text-gray-700,
+        body.dark .text-slate-400,
+        body.dark .text-gray-600,
+        body.dark p,
+        body.dark span {
+            color: #e5e7eb !important;
+        }
+        body.dark .border-slate-100,
+        body.dark .border-slate-200,
+        body.dark .border-gray-100,
+        body.dark .border-white\/10,
+        body.dark .border-slate-300 {
+            border-color: #334155 !important;
+        }
+        body.dark .text-brand-green {
+            color: #4ade80 !important;
+        }
+        body.dark .bg-brand-green {
+            background-color: #15803d !important;
+        }
+        body.dark .bg-brand-hoverGreen:hover {
+            background-color: #166534 !important;
+        }
+        body.dark #theme-toggle-btn {
+            background: #111827;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+    </style>
+    <script>
+        (function () {
+            const storageKey = 'mcdonalds-theme';
+            const button = document.createElement('button');
+            button.id = 'theme-toggle-btn';
+            button.type = 'button';
+            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
+            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+            document.body.appendChild(button);
+
+            function applyTheme() {
+                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.body.classList.toggle('dark', dark);
+                document.documentElement.classList.toggle('dark', dark);
+                const icon = button.querySelector('i');
+                const label = button.querySelector('.theme-toggle-label');
+                if (dark) {
+                    icon.className = 'fa-solid fa-sun';
+                    label.textContent = 'Light mode';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    label.textContent = 'Dark mode';
+                }
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme();
+            });
+
+            applyTheme();
+        })();
+    </script>
+</body>
+</html>

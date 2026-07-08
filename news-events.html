@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Events - McDONALDS Educational Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e5c33',
+                            hoverGreen: '#0a4224',
+                            navy: '#011c11',
+                            gold: '#dfa510',
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-brand-lightBg overflow-x-hidden">
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                        <img src="assets/logo.jpg" alt="McDONALDS Logo" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
+                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Home</a>
+                    <a href="about.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">About Us</a>
+                    <a href="programmes.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Programmes</a>
+                    <a href="apply.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Admissions</a>
+                    <a href="news-events.html" class="text-brand-green font-semibold text-sm transition-colors">News & Events</a>
+                    <a href="contact.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Contact Us</a>
+                </nav>
+
+                <div class="hidden lg:flex items-center">
+                    <a href="login.html" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-2.5 rounded-md font-medium text-sm flex items-center gap-2 transition duration-200 shadow-sm">
+                        <i class="fa-regular fa-user text-xs"></i>
+                        <span>Student Portal</span>
+                    </a>
+                </div>
+
+                <div class="lg:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <div id="mobile-drawer" class="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-gray-100">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                    <img src="assets/logo.jpg" alt="McDONALDS Logo" class="w-full h-full object-contain p-1">
+                </div>
+                <div>
+                    <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
+                    <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                </div>
+            </a>
+            <button id="close-drawer-btn" class="text-slate-500 hover:text-brand-green p-1 focus:outline-none">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+            <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-house text-base text-slate-400 shrink-0"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-circle-info text-base text-slate-400 shrink-0"></i>
+                <span>About Us</span>
+            </a>
+            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
+                <span>Programmes</span>
+            </a>
+            <a href="apply.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-file-lines text-base text-slate-400 shrink-0"></i>
+                <span>Admissions</span>
+            </a>
+            <a href="news-events.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
+                <i class="fa-solid fa-newspaper text-base shrink-0"></i>
+                <span>News & Events</span>
+            </a>
+            <a href="contact.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-envelope text-base text-slate-400 shrink-0"></i>
+                <span>Contact Us</span>
+            </a>
+            <a href="login.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-right-to-bracket text-base text-slate-400 shrink-0"></i>
+                <span>Student Portal</span>
+            </a>
+        </div>
+    </div>
+
+    <main>
+        <section class="relative bg-brand-navy overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1600&q=80" alt="Students in a learning environment" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#011c11]/95 via-[#011c11]/85 to-[#011c11]/70"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-white">
+                <div class="max-w-3xl space-y-6">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-emerald-300 border border-white/10">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        Latest updates from McDONALDS Educational Services
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">News, updates and events shaping the academic experience.</h1>
+                    <p class="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl">Stay connected with admissions news, campus highlights, programme launches, and upcoming academic events curated for our students and partners.</p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="contact.html" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-6 py-3 rounded-md font-medium text-sm transition shadow-md">Contact the Office</a>
+                        <a href="apply.html" class="border border-white/70 hover:bg-white hover:text-brand-navy text-white px-6 py-3 rounded-md font-medium text-sm transition">Apply for Admission</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green mb-4">
+                        <i class="fa-solid fa-calendar-check text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">Upcoming Events</h3>
+                    <p class="text-sm text-slate-500 mt-2 leading-relaxed">Join orientation sessions, open days, and academic workshops designed to guide you every step of the way.</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green mb-4">
+                        <i class="fa-solid fa-newspaper text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">Latest Announcements</h3>
+                    <p class="text-sm text-slate-500 mt-2 leading-relaxed">Read about programme updates, student milestones, and important notices from our administration.</p>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green mb-4">
+                        <i class="fa-solid fa-users text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800">Community Highlights</h3>
+                    <p class="text-sm text-slate-500 mt-2 leading-relaxed">Discover stories of student success, partner collaborations, and learning opportunities across our centres.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-green">Featured stories</p>
+                    <h2 class="text-2xl font-extrabold text-slate-800">What’s happening now</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80" alt="Students at a lecture" class="h-48 w-full object-cover">
+                    <div class="p-6 space-y-3">
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-green">Admissions</span>
+                        <h3 class="text-lg font-bold text-slate-800">New intake briefing session opens registration for prospective students</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Our academic team will host a virtual briefing on programme requirements, application timelines, and support services.</p>
+                        <a href="apply.html" class="inline-flex items-center text-sm font-semibold text-brand-green hover:underline">Learn more <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" alt="Campus collaboration event" class="h-48 w-full object-cover">
+                    <div class="p-6 space-y-3">
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-green">Partnership</span>
+                        <h3 class="text-lg font-bold text-slate-800">McDONALDS Educational Services expands its academic support network</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">We are strengthening collaboration with study centres and tutors to improve student onboarding and progress tracking.</p>
+                        <a href="about.html" class="inline-flex items-center text-sm font-semibold text-brand-green hover:underline">Read about us <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Student networking event" class="h-48 w-full object-cover">
+                    <div class="p-6 space-y-3">
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-green">Student life</span>
+                        <h3 class="text-lg font-bold text-slate-800">Student engagement forum brings together learners and mentors</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">A successful forum helped students ask questions about course planning, career growth, and academic planning.</p>
+                        <a href="contact.html" class="inline-flex items-center text-sm font-semibold text-brand-green hover:underline">Get in touch <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6">
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-brand-green">Upcoming calendar</p>
+                            <h2 class="text-xl font-extrabold text-slate-800">Events to look forward to</h2>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 border-b border-slate-100 pb-4">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 text-brand-green flex flex-col items-center justify-center font-bold text-sm">
+                                <span>24</span>
+                                <span class="text-[10px] uppercase">Jul</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800">Open Day & Admission Guidance Session</h3>
+                                <p class="text-sm text-slate-500 mt-1">Meet our faculty, ask questions about programmes, and get support with your application.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 border-b border-slate-100 pb-4">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 text-brand-green flex flex-col items-center justify-center font-bold text-sm">
+                                <span>06</span>
+                                <span class="text-[10px] uppercase">Aug</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800">Student Orientation Workshop</h3>
+                                <p class="text-sm text-slate-500 mt-1">A practical session on student portal access, study planning, and academic expectations.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-14 h-14 rounded-xl bg-emerald-50 text-brand-green flex flex-col items-center justify-center font-bold text-sm">
+                                <span>21</span>
+                                <span class="text-[10px] uppercase">Aug</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800">Partner Forum with Study Centre Representatives</h3>
+                                <p class="text-sm text-slate-500 mt-1">An opportunity to connect with our academic partners and improve programme delivery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-brand-navy rounded-2xl p-8 text-white shadow-sm">
+                    <p class="text-[11px] font-bold uppercase tracking-[0.25em] text-emerald-300">Stay informed</p>
+                    <h2 class="text-xl font-extrabold mt-2">Subscribe for updates</h2>
+                    <p class="text-sm text-slate-300 mt-3 leading-relaxed">Get notified about admissions milestones, important announcements, and upcoming events directly in your inbox.</p>
+                    <div class="mt-6 space-y-3">
+                        <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-white transition">
+                            <i class="fa-solid fa-envelope"></i>
+                            Contact the admissions desk
+                        </a>
+                        <a href="login.html" class="inline-flex items-center gap-2 text-sm font-semibold text-emerald-300 hover:text-white transition">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Access your student portal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-navy text-slate-400 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <div class="text-lg font-extrabold text-white tracking-wide">McDONALDS Educational Services</div>
+                    <p class="text-sm mt-2">Empowering students through quality education, flexible learning, and trusted partnerships.</p>
+                </div>
+                <div class="text-sm">
+                    <p><i class="fa-solid fa-location-dot mr-2 text-emerald-400"></i>Ibadan Study Centre, Oyo State</p>
+                    <p class="mt-2"><i class="fa-solid fa-envelope mr-2 text-emerald-400"></i>info@mcdonaldseducationalservices.org</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        :root { color-scheme: light; }
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark header,
+        body.dark main,
+        body.dark footer,
+        body.dark .bg-white,
+        body.dark .bg-brand-lightBg,
+        body.dark .rounded-2xl,
+        body.dark .rounded-xl,
+        body.dark .rounded-lg {
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+        }
+        body.dark .text-slate-800,
+        body.dark .text-slate-700,
+        body.dark .text-slate-600,
+        body.dark .text-slate-500,
+        body.dark p,
+        body.dark span,
+        body.dark h1,
+        body.dark h2,
+        body.dark h3 {
+            color: #e5e7eb !important;
+        }
+        body.dark .border-slate-200,
+        body.dark .border-slate-100,
+        body.dark .border-white\/10 {
+            border-color: #334155 !important;
+        }
+        body.dark .bg-emerald-50 {
+            background-color: rgba(22, 101, 52, 0.25) !important;
+        }
+        body.dark #theme-toggle-btn {
+            background: #111827;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+    </style>
+    <script>
+        (function () {
+            const storageKey = 'mcdonalds-theme';
+            const button = document.createElement('button');
+            button.id = 'theme-toggle-btn';
+            button.type = 'button';
+            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
+            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+            document.body.appendChild(button);
+
+            function applyTheme() {
+                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.body.classList.toggle('dark', dark);
+                document.documentElement.classList.toggle('dark', dark);
+                const icon = button.querySelector('i');
+                const label = button.querySelector('.theme-toggle-label');
+                if (dark) {
+                    icon.className = 'fa-solid fa-sun';
+                    label.textContent = 'Light mode';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    label.textContent = 'Dark mode';
+                }
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme();
+            });
+
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const overlay = document.getElementById('mobile-overlay');
+            const drawer = document.getElementById('mobile-drawer');
+            const closeBtn = document.getElementById('close-drawer-btn');
+            function openDrawer() {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('opacity-100');
+                drawer.classList.remove('-translate-x-full');
+                drawer.classList.add('translate-x-0');
+                document.body.classList.add('overflow-hidden');
+            }
+            function closeDrawer() {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('opacity-100');
+                drawer.classList.add('-translate-x-full');
+                drawer.classList.remove('translate-x-0');
+                document.body.classList.remove('overflow-hidden');
+            }
+            menuBtn.addEventListener('click', openDrawer);
+            closeBtn.addEventListener('click', closeDrawer);
+            overlay.addEventListener('click', closeDrawer);
+
+            applyTheme();
+        })();
+    </script>
+</body>
+</html>

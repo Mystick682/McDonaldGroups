@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BOUESTI & McDonalds Educational Services</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Supabase JS Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e5c33',      
+                            hoverGreen: '#0a4224', 
+                            navy: '#011c11',       
+                            gold: '#dfa510',       
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* CSS for Smooth Scroll Animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(25px) scale(0.97);
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-brand-lightBg overflow-x-hidden">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Block -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                        <img src="assets/logo.jpg" alt="BUESTI Logo" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
+                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                    </div>
+                </div>
+
+                <!-- Navigation menu tabs for desktop -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm">
+                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-semibold transition-colors">Home</a>
+                    <a href="about.html" class="text-brand-green font-bold transition-colors">About Us</a>
+                    <a href="programmes.html" class="text-slate-600 hover:text-brand-green font-semibold transition-colors">Programmes</a>
+                    <a href="admissions.html" class="text-slate-600 hover:text-brand-green font-semibold transition-colors">Admissions Portal</a>
+                </nav>
+
+                <!-- Universal MENU Button (Always Visible) -->
+                <div>
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Drawer Overlay (Backdrop) -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300 no-print"></div>
+
+    <!-- Navigation Drawer (White Background Restored) -->
+    <div id="mobile-drawer" class="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col no-print">
+        <!-- Drawer Header with Logo -->
+        <div class="flex items-center justify-between p-5 border-b border-gray-100">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                    <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-0.5">
+                </div>
+                <div>
+                    <div class="text-base font-extrabold text-brand-green leading-none">McDONALDS</div>
+                    <div class="text-[8px] font-bold text-brand-green tracking-wider uppercase mt-1 leading-none">Educational Services</div>
+                </div>
+            </div>
+            <button id="close-drawer-btn" class="text-slate-400 hover:text-brand-green p-1 focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        
+        <!-- Drawer Menu List -->
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+            <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-house text-base text-slate-400 shrink-0"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
+                <i class="fa-solid fa-circle-info text-base shrink-0"></i>
+                <span>About Us</span>
+            </a>
+            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
+                <span>Programmes</span>
+            </a>
+            <a href="apply.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-file-lines text-base text-slate-400 shrink-0"></i>
+                <span>Admissions</span>
+            </a>
+            <a href="contact.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-envelope text-base text-slate-400 shrink-0"></i>
+                <span>Contact Us</span>
+            </a>
+            <a href="login.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-right-to-bracket text-base text-slate-400 shrink-0"></i>
+                <span>Student Portal</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Page Title / Hero Area -->
+    <section class="relative bg-brand-navy min-h-[340px] flex items-center py-20 text-white overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80" alt="Students learning" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="space-y-4 max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-emerald-900/60 border border-emerald-700/50 px-3.5 py-1.5 rounded-full text-xs font-semibold text-emerald-300 uppercase tracking-wider">
+                    <i class="fa-solid fa-handshake"></i> Trusted Academic Alliance
+                </div>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none uppercase">
+                    About McDonalds & BOUESTI
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base max-w-2xl font-light leading-relaxed">
+                    Bringing standard accredited degree programmes from Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti (BOUESTI) directly to learners in Ibadan [1].
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Story Block -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+        
+        <!-- Story Two-Column Grid -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6 scroll-animate">
+                <span class="text-xs font-bold text-brand-gold uppercase tracking-widest block">Our Foundation</span>
+                <h2 class="text-3xl font-black text-slate-800 tracking-tight leading-tight">
+                    Empowering Student Career Journeys Through Flexible Education
+                </h2>
+                <div class="w-12 h-1 bg-brand-green rounded"></div>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    <strong>McDonalds Educational Services</strong> is proud to partner with the renowned Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti (BOUESTI) as an approved Directorate Study Centre [1]. Our primary mission is to expand access to high-quality higher education for students who require flexible educational arrangements [1].
+                </p>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    By coordinating weekend part-time programs directly at the Ibadan study center, we make it possible for working professionals, entrepreneurs, and busy students to earn standard, accredited university degrees without having to relocate to the main campus in Ekiti [1].
+                </p>
+            </div>
+            
+            <div class="lg:col-span-5 scroll-animate relative">
+                <!-- Academic image display frame -->
+                <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white p-3">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="Students studying at Study Centre" class="rounded-xl object-cover w-full h-72">
+                </div>
+                <div class="absolute -bottom-4 -left-4 bg-brand-gold text-brand-navy font-black text-xs uppercase px-4 py-2.5 rounded-lg shadow-md">
+                    Approved Ibadan Center
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Value Propositions Block (Matches original index values) -->
+        <section class="space-y-10 pt-12 border-t border-slate-100">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-bold text-brand-green uppercase tracking-widest block">Core Pillars</span>
+                <h3 class="text-2xl font-black text-slate-800">Our Strategic Intent</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white border border-slate-100 shadow-sm rounded-xl p-6 space-y-4 scroll-animate">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-50 text-brand-green flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h4 class="font-extrabold text-slate-800 text-base">Our Vision</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        To be the premier affiliate center of excellence in Oyo State, providing endless learning possibilities and bridging access boundaries through modern part-time delivery [1].
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white border border-slate-100 shadow-sm rounded-xl p-6 space-y-4 scroll-animate">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-50 text-brand-green flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="font-extrabold text-slate-800 text-base">Our Mission</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        To deliver flexible, state-approved, and affordable undergraduate programs that equip students with both academic foundation and practical vocational self-reliance [1].
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white border border-slate-100 shadow-sm rounded-xl p-6 space-y-4 scroll-animate">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-50 text-brand-green flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h4 class="font-extrabold text-slate-800 text-base">Trusted Alliance</h4>
+                    <p class="text-slate-500 text-xs leading-relaxed">
+                        Every programme follows the exact curriculum of Bamidele Olumilua University [1]. Your certificates, exam transcripts, and final degree certifications are issued directly by the university senate [1].
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ibadan Location Banner -->
+        <section class="bg-brand-navy rounded-2xl text-white p-8 sm:p-12 relative overflow-hidden scroll-animate shadow-md">
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-4 max-w-xl">
+                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest block">Study Centre Venue</span>
+                    <h3 class="text-2xl font-black uppercase">Bishop Phillips Academy, Ibadan</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        Our lectures are held physically in a serene, standard academic environment at Iwo-Road, Ibadan, every Saturday and Sunday. Highly qualified lecturers coordinate and deliver all sessions.
+                    </p>
+                </div>
+                <div class="shrink-0 flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <a href="index.html" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-6 py-3 rounded-lg text-xs font-bold text-center transition shadow-md">
+                        Start Application
+                    </a>
+                    <a href="programmes.html" class="border border-white/20 hover:border-white text-slate-300 hover:text-white px-6 py-3 rounded-lg text-xs font-bold text-center transition">
+                        View Courses
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#01140c] text-slate-300 pt-16 pb-8 border-t border-slate-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                            <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                        </div>
+                        <div>
+                            <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI/McDONALDS</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Ibadan Study Centre</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed pt-2">
+                        Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Location - Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Main Campus Location</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Igbara Odo Road, P.M.B. 250, Ikere-Ekiti, Ekiti State, Nigeria.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Quick Links</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="programmes.html" class="hover:text-white transition">Admissions & Programmes</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Ibadan Study Centre Hotlines</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
+                            <span>Bishop Phillips Academy, Iwo-Road, Ibadan [1].</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-emerald-600"></i>
+                            <span>+234 915 073 9629</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800/80 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 BOUESTI/McDONALDS Educational Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase JavaScript Initialization -->
+    <script>
+        const SUPABASE_URL = "https://rcuvjxdeosgdlkmrokse.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjdXZqeGRlb3NnZGxrbXJva3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzMzcyNTgsImV4cCI6MjA5ODkxMzI1OH0.SCd5DK4b0gwZEhToZpna0ulMI4ZECeTNHLTPlRSQfug";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    </script>
+
+    <!-- Frontend Drawer Toggles & Scroll Animation Engine -->
+    <script>
+        // --- Navigation Drawer (Universal Mobile & Desktop Toggle) ---
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-drawer-btn');
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-overlay');
+
+        function openMenu() {
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+                drawer.classList.remove('-translate-x-full');
+            }, 10);
+        }
+
+        function closeMenu() {
+            drawer.classList.add('-translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 300);
+        }
+
+        menuBtn?.addEventListener('click', openMenu);
+        closeBtn?.addEventListener('click', closeMenu);
+        overlay?.addEventListener('click', closeMenu);
+
+        // --- Intersection Observer scroll transition animator ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(card => {
+            scrollObserver.observe(card);
+        });
+    </script>
+    <style>
+        :root { color-scheme: light; }
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark header,
+        body.dark main,
+        body.dark aside,
+        body.dark .bg-white,
+        body.dark .bg-slate-50,
+        body.dark .bg-slate-100,
+        body.dark .bg-brand-lightBg,
+        body.dark .bg-brand-navy,
+        body.dark .rounded-2xl,
+        body.dark .rounded-xl,
+        body.dark .rounded-lg {
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+        }
+        body.dark .text-slate-800,
+        body.dark .text-slate-700,
+        body.dark .text-slate-600,
+        body.dark .text-slate-500,
+        body.dark .text-gray-800,
+        body.dark .text-gray-700,
+        body.dark .text-slate-400,
+        body.dark .text-gray-600,
+        body.dark p,
+        body.dark span {
+            color: #e5e7eb !important;
+        }
+        body.dark .border-slate-100,
+        body.dark .border-slate-200,
+        body.dark .border-gray-100,
+        body.dark .border-white\/10,
+        body.dark .border-slate-300 {
+            border-color: #334155 !important;
+        }
+        body.dark .text-brand-green {
+            color: #4ade80 !important;
+        }
+        body.dark .bg-brand-green {
+            background-color: #15803d !important;
+        }
+        body.dark .bg-brand-hoverGreen:hover {
+            background-color: #166534 !important;
+        }
+        body.dark #theme-toggle-btn {
+            background: #111827;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+    </style>
+    <script>
+        (function () {
+            const storageKey = 'mcdonalds-theme';
+            const button = document.createElement('button');
+            button.id = 'theme-toggle-btn';
+            button.type = 'button';
+            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
+            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+            document.body.appendChild(button);
+
+            function applyTheme() {
+                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.body.classList.toggle('dark', dark);
+                document.documentElement.classList.toggle('dark', dark);
+                const icon = button.querySelector('i');
+                const label = button.querySelector('.theme-toggle-label');
+                if (dark) {
+                    icon.className = 'fa-solid fa-sun';
+                    label.textContent = 'Light mode';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    label.textContent = 'Dark mode';
+                }
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme();
+            });
+
+            applyTheme();
+        })();
+    </script>
+</body>
+</html>

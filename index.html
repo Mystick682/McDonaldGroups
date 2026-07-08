@@ -71,7 +71,7 @@
                 <!-- Logo Block -->
             <div class="flex items-center space-x-3">
                 <!-- Circle frame for your logo image -->
-                <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
                     <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
@@ -83,11 +83,11 @@
                 <!-- Desktop Navigation Menu -->
                 <nav class="hidden lg:flex items-center space-x-8">
                     <a href="index.html" class="text-brand-green font-semibold text-sm transition-colors">Home</a>
-                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">About Us</a>
+                    <a href="about.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">About Us</a>
                     <a href="programmes.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Programmes</a>
-                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Affiliates</a>
-                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">News & Events</a>
-                    <a href="index.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Contact Us</a>
+                    <a href="affiliates.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Affiliates</a>
+                    <a href="news-events.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">News & Events</a>
+                    <a href="contact.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Contact Us</a>
                 </nav>
 
                 <!-- Desktop Action Button -->
@@ -100,8 +100,9 @@
 
                 <!-- Mobile Navigation Toggle Button -->
                 <div class="lg:hidden">
-                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none p-2 rounded-md hover:bg-slate-100 transition">
-                        <i class="fa-solid fa-bars text-xl"></i>
+                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
+                        <i class="fa-solid fa-bars text-sm"></i>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
                     </button>
                 </div>
             </div>
@@ -117,7 +118,7 @@
         <div class="flex items-center justify-between p-5 border-b border-gray-100">
             <div class="flex items-center space-x-3">
                 <!-- Circle frame for your logo image -->
-                <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
                     <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
@@ -130,18 +131,29 @@
             </button>
         </div>
         <!-- Drawer Body Links -->
-        <div class="flex-1 overflow-y-auto px-5 py-6 space-y-4">
-            <a href="index.html" class="block px-3 py-2 rounded-md text-brand-green font-semibold bg-green-50/50 text-sm">Home</a>
-            <a href="index.html" class="block px-3 py-2 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm transition">About Us</a>
-            <a href="programmes.html" class="block px-3 py-2 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm transition">Programmes</a>
-            <a href="index.html" class="block px-3 py-2 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm transition">Affiliates</a>
-            <a href="index.html" class="block px-3 py-2 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm transition">News & Events</a>
-            <a href="index.html" class="block px-3 py-2 rounded-md text-slate-600 hover:text-brand-green hover:bg-slate-50 font-medium text-sm transition">Contact Us</a>
-        </div>
-        <!-- Drawer Footer Action -->
-        <div class="p-5 border-t border-gray-100">
-            <a href="login.html" class="w-full bg-brand-green hover:bg-brand-hoverGreen text-white py-3 rounded-md font-medium text-sm flex items-center justify-center gap-2 transition duration-200">
-                <i class="fa-regular fa-user"></i>
+        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
+            <a href="index.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
+                <i class="fa-solid fa-house text-base shrink-0"></i>
+                <span>Home</span>
+            </a>
+            <a href="about.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-circle-info text-base text-slate-400 shrink-0"></i>
+                <span>About Us</span>
+            </a>
+            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
+                <span>Programmes</span>
+            </a>
+            <a href="apply.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-file-lines text-base text-slate-400 shrink-0"></i>
+                <span>Admissions</span>
+            </a>
+            <a href="contact.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-envelope text-base text-slate-400 shrink-0"></i>
+                <span>Contact Us</span>
+            </a>
+            <a href="login.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
+                <i class="fa-solid fa-right-to-bracket text-base text-slate-400 shrink-0"></i>
                 <span>Student Portal</span>
             </a>
         </div>
@@ -239,7 +251,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             <!-- Link 1: About Us -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="about.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-regular fa-id-card text-base"></i>
@@ -250,7 +262,7 @@
             </a>
 
             <!-- Link 2: Programmes -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="programmes.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-solid fa-graduation-cap text-base"></i>
@@ -261,7 +273,7 @@
             </a>
 
             <!-- Link 3: Affiliates -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="affiliates.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-solid fa-building-user text-base"></i>
@@ -272,7 +284,7 @@
             </a>
 
             <!-- Link 4: Admissions -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="admissions.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-regular fa-file-lines text-base"></i>
@@ -283,7 +295,7 @@
             </a>
 
             <!-- Link 5: Student Portal -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="student-portal.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-regular fa-user text-base"></i>
@@ -294,7 +306,7 @@
             </a>
 
             <!-- Link 6: News & Events -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="news-events.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-solid fa-bullhorn text-base"></i>
@@ -305,7 +317,7 @@
             </a>
 
             <!-- Link 7: FAQs -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="faqs.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-regular fa-circle-question text-base"></i>
@@ -316,7 +328,7 @@
             </a>
 
             <!-- Link 8: Contact Us -->
-            <a href="#" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
+            <a href="contact.html" class="scroll-animate bg-white hover:bg-slate-50 border border-gray-100 rounded-lg p-4 flex items-center justify-between shadow-sm hover:shadow transition duration-150 group">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded bg-green-50 text-brand-green flex items-center justify-center">
                         <i class="fa-solid fa-phone text-base"></i>
@@ -338,16 +350,17 @@
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3">
                     <!-- Circle frame for your logo image -->
-                    <div class="w-10 h-10 rounded-full border-2 border-yellow-400 bg-white flex items-center justify-center overflow-hidden shrink-0">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
                     <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
                     </div>
                     <div>
-                    <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDonalds</div>
+                    <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI/McDONALDS</div>
                     <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                    <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Ibadan Study Centre</div>
                     </div>
                 </div>
                     <p class="text-xs text-slate-400 leading-relaxed pt-2">
-                        BUET Scientific & Technological Institute (BOUESTI) Affiliate Programme – Expanding access to quality higher education.
+                        Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Location - Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.
                     </p>
                 </div>
 
@@ -355,11 +368,11 @@
                 <div class="space-y-4">
                     <h4 class="text-white font-semibold text-sm">Quick Links</h4>
                     <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="#" class="hover:text-white transition">Home</a></li>
-                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition">Programmes</a></li>
-                        <li><a href="#" class="hover:text-white transition">Affiliates</a></li>
-                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="programmes.html" class="hover:text-white transition">Programmes</a></li>
+                        <li><a href="affiliates.html" class="hover:text-white transition">Affiliates</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -367,10 +380,10 @@
                 <div class="space-y-4">
                     <h4 class="text-white font-semibold text-sm">Resources</h4>
                     <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="#" class="hover:text-white transition">Admissions</a></li>
-                        <li><a href="#" class="hover:text-white transition">Student Portal</a></li>
-                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
-                        <li><a href="#" class="hover:text-white transition">Downloads</a></li>
+                        <li><a href="admissions.html" class="hover:text-white transition">Admissions</a></li>
+                        <li><a href="student-portal.html" class="hover:text-white transition">Student Portal</a></li>
+                        <li><a href="faqs.html" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition">Downloads</a></li>
                     </ul>
                 </div>
 
@@ -380,7 +393,7 @@
                     <ul class="space-y-3 text-xs text-slate-400">
                         <li class="flex items-start space-x-3">
                             <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
-                            <span>BOUESTI Campus, P.M.B 725, Bauchi, Nigeria.</span>
+                            <span>Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.</span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i class="fa-solid fa-phone text-emerald-600"></i>
@@ -397,7 +410,7 @@
 
             <!-- Bottom Copyright & Social Area -->
             <div class="border-t border-slate-800/80 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-                <p>© 2026 BOUESTI Affiliate Programme. All rights reserved.</p>
+                <p>© 2026 BOUESTI/McDONALDS Educational Services. All rights reserved.</p>
                 
                 <div class="flex items-center space-x-4">
                     <a href="#" class="w-7 h-7 rounded-full border border-slate-700 hover:border-white text-slate-400 hover:text-white flex items-center justify-center transition">
@@ -467,6 +480,91 @@
         document.querySelectorAll('.scroll-animate').forEach(card => {
             scrollObserver.observe(card);
         });
+    </script>
+    <style>
+        :root { color-scheme: light; }
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark header,
+        body.dark main,
+        body.dark aside,
+        body.dark .bg-white,
+        body.dark .bg-slate-50,
+        body.dark .bg-slate-100,
+        body.dark .bg-brand-lightBg,
+        body.dark .bg-brand-navy,
+        body.dark .rounded-2xl,
+        body.dark .rounded-xl,
+        body.dark .rounded-lg {
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+        }
+        body.dark .text-slate-800,
+        body.dark .text-slate-700,
+        body.dark .text-slate-600,
+        body.dark .text-slate-500,
+        body.dark .text-gray-800,
+        body.dark .text-gray-700,
+        body.dark .text-slate-400,
+        body.dark .text-gray-600,
+        body.dark p,
+        body.dark span {
+            color: #e5e7eb !important;
+        }
+        body.dark .border-slate-100,
+        body.dark .border-slate-200,
+        body.dark .border-gray-100,
+        body.dark .border-white\/10,
+        body.dark .border-slate-300 {
+            border-color: #334155 !important;
+        }
+        body.dark .text-brand-green {
+            color: #4ade80 !important;
+        }
+        body.dark .bg-brand-green {
+            background-color: #15803d !important;
+        }
+        body.dark .bg-brand-hoverGreen:hover {
+            background-color: #166534 !important;
+        }
+        body.dark #theme-toggle-btn {
+            background: #111827;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+    </style>
+    <script>
+        (function () {
+            const storageKey = 'mcdonalds-theme';
+            const button = document.createElement('button');
+            button.id = 'theme-toggle-btn';
+            button.type = 'button';
+            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
+            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+            document.body.appendChild(button);
+
+            function applyTheme() {
+                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.body.classList.toggle('dark', dark);
+                document.documentElement.classList.toggle('dark', dark);
+                const icon = button.querySelector('i');
+                const label = button.querySelector('.theme-toggle-label');
+                if (dark) {
+                    icon.className = 'fa-solid fa-sun';
+                    label.textContent = 'Light mode';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    label.textContent = 'Dark mode';
+                }
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme();
+            });
+
+            applyTheme();
+        })();
     </script>
 </body>
 </html>

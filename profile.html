@@ -44,7 +44,7 @@
         <div class="space-y-8">
             <!-- Sidebar Header / Logo -->
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full border border-yellow-400/60 bg-brand-green flex items-center justify-center text-white font-bold relative overflow-hidden shrink-0">
+                <div class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center text-white font-bold relative overflow-hidden shrink-0">
                     <span class="text-xs">B</span>
                 </div>
                 <div>
@@ -501,6 +501,91 @@
             localStorage.removeItem('bouesti_student_session');
             window.location.href = "login.html";
         }
+    </script>
+    <style>
+        :root { color-scheme: light; }
+        body.dark { background-color: #020617; color: #f8fafc; }
+        body.dark header,
+        body.dark main,
+        body.dark aside,
+        body.dark .bg-white,
+        body.dark .bg-slate-50,
+        body.dark .bg-slate-100,
+        body.dark .bg-brand-lightBg,
+        body.dark .bg-brand-navy,
+        body.dark .rounded-2xl,
+        body.dark .rounded-xl,
+        body.dark .rounded-lg {
+            background-color: #111827 !important;
+            color: #f8fafc !important;
+        }
+        body.dark .text-slate-800,
+        body.dark .text-slate-700,
+        body.dark .text-slate-600,
+        body.dark .text-slate-500,
+        body.dark .text-gray-800,
+        body.dark .text-gray-700,
+        body.dark .text-slate-400,
+        body.dark .text-gray-600,
+        body.dark p,
+        body.dark span {
+            color: #e5e7eb !important;
+        }
+        body.dark .border-slate-100,
+        body.dark .border-slate-200,
+        body.dark .border-gray-100,
+        body.dark .border-white\/10,
+        body.dark .border-slate-300 {
+            border-color: #334155 !important;
+        }
+        body.dark .text-brand-green {
+            color: #4ade80 !important;
+        }
+        body.dark .bg-brand-green {
+            background-color: #15803d !important;
+        }
+        body.dark .bg-brand-hoverGreen:hover {
+            background-color: #166534 !important;
+        }
+        body.dark #theme-toggle-btn {
+            background: #111827;
+            color: #f8fafc;
+            border-color: #475569;
+        }
+    </style>
+    <script>
+        (function () {
+            const storageKey = 'mcdonalds-theme';
+            const button = document.createElement('button');
+            button.id = 'theme-toggle-btn';
+            button.type = 'button';
+            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
+            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+            document.body.appendChild(button);
+
+            function applyTheme() {
+                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.body.classList.toggle('dark', dark);
+                document.documentElement.classList.toggle('dark', dark);
+                const icon = button.querySelector('i');
+                const label = button.querySelector('.theme-toggle-label');
+                if (dark) {
+                    icon.className = 'fa-solid fa-sun';
+                    label.textContent = 'Light mode';
+                } else {
+                    icon.className = 'fa-solid fa-moon';
+                    label.textContent = 'Dark mode';
+                }
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme();
+            });
+
+            applyTheme();
+        })();
     </script>
 </body>
 </html>
