@@ -799,6 +799,35 @@
             color: #f8fafc;
             border-color: #475569;
         }
+
+        /* ------------------------------------------------------------------
+           FIX: colored badges/pills were losing contrast in dark mode.
+           The generic "body.dark p" / "body.dark span" rule above forces
+           light-gray text everywhere, which washes out badges that sit on
+           a light bg-*-50 chip (Weekend Part-Time pill, and the
+           Management & Social / Humanities / Education Studies course
+           tags). These compound selectors are more specific, so they win
+           over the generic rule and give each badge a proper dark-mode
+           tinted background with a matching bright text color, instead of
+           light-gray-on-near-white.
+        ------------------------------------------------------------------ */
+        body.dark .bg-emerald-50.text-brand-green,
+        body.dark .bg-emerald-50.text-emerald-800 {
+            background-color: rgba(16, 185, 129, 0.15) !important;
+            color: #34d399 !important;
+        }
+        body.dark .bg-blue-50.text-blue-700 {
+            background-color: rgba(59, 130, 246, 0.15) !important;
+            color: #60a5fa !important;
+        }
+        body.dark .bg-amber-50.text-amber-700 {
+            background-color: rgba(245, 158, 11, 0.15) !important;
+            color: #fbbf24 !important;
+        }
+        body.dark .bg-purple-50.text-purple-700 {
+            background-color: rgba(168, 85, 247, 0.15) !important;
+            color: #c084fc !important;
+        }
     </style>
     <script>
         (function () {
