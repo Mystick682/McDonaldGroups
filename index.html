@@ -313,7 +313,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .reveal-hidden,
 .reveal-visible{
-  transition:opacity .7s ease, transform .7s ease;
+  transition:opacity .6s ease, transform .6s ease;
+}
+.pillar-card.reveal-hidden,
+.why-card.reveal-hidden{
+  transform:translateY(24px) scale(.97);
+}
+.pillar-card.reveal-visible,
+.why-card.reveal-visible{
+  transform:translateY(0) scale(1);
 }
 
 .hero-title{
@@ -1434,30 +1442,46 @@ if (testiPrev) {
 }
 
 // Reveal animations for page sections
+// These re-trigger every time an element crosses the viewport edge,
+// so the animation plays again and again as you scroll up and down.
 const revealSections = [
   document.querySelector('.hero-content'),
   document.querySelector('.stats-card'),
-  document.querySelector('.who-grid'),
-  document.querySelector('.pillars-grid'),
+  document.querySelector('.who-image'),
+  document.querySelector('.who-text'),
+  ...document.querySelectorAll('.pillar-card'),
+  document.querySelector('.services-row'),
+  ...document.querySelectorAll('.why-card'),
   document.querySelector('.testimonial-row'),
-  document.querySelector('.bottom-grid'),
+  ...document.querySelectorAll('.news-item'),
+  document.querySelector('.gallery-grid'),
+  document.querySelector('.partners-grid'),
   document.querySelector('.cta-banner'),
   document.querySelector('.site-footer')
 ].filter(Boolean);
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
+    // Toggle on every crossing instead of unobserving after the first reveal,
+    // so scrolling back up hides it again and scrolling down re-reveals it.
     if (entry.isIntersecting) {
       entry.target.classList.add('reveal-visible');
-      revealObserver.unobserve(entry.target);
+      entry.target.classList.remove('reveal-hidden');
+    } else {
+      entry.target.classList.remove('reveal-visible');
+      entry.target.classList.add('reveal-hidden');
     }
   });
 }, {
-  threshold: 0.15
+  threshold: 0.15,
+  rootMargin: '0px 0px -8% 0px'
 });
 
-revealSections.forEach(section => {
+revealSections.forEach((section, i) => {
   section.classList.add('reveal-hidden');
+  // Small stagger so grouped cards (pillars, why-cards, news items) don't
+  // all snap in at the exact same instant.
+  section.style.transitionDelay = `${(i % 4) * 60}ms`;
   revealObserver.observe(section);
 });
 </script>
