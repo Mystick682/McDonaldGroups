@@ -1,398 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - McDonalds Educational Services</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            green: '#0e5c33',
-                            hoverGreen: '#0a4224',
-                            navy: '#011c11',
-                            gold: '#dfa510',
-                            lightBg: '#f8fafc'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | McDonalds Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/png" href="assets/logo3.jpg">
+  <link rel="apple-touch-icon" href="assets/logo3.jpg">
+  <style>
+    :root {
+      --green: #0EA968;
+      --green-dark: #064E3B;
+      --green-darker: #032B20;
+      --dark-bg: #071A12;
+      --dark-bg-2: #0A2019;
+      --near-black: #0A0F0D;
+      --gold: #D8A94B;
+      --cream: #F4F1EA;
+      --ink: #12201A;
+      --gray-text: #5B6660;
+      --light-bg: #F6F7F5;
+      --white: #FFFFFF;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --container-w: 1240px;
+    }
 
-    <link rel="icon" type="image/png" href="assets/icon.jpg">
-    <link rel="apple-touch-icon" href="assets/icon.jpg">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--light-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.dark {
+      background: #040d0a;
+      color: #edf7f1;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    button, input, textarea { font: inherit; }
+    .container { max-width: var(--container-w); margin: 0 auto; padding: 0 24px; }
 
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--near-black);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 19px;
+      color: #fff;
+      letter-spacing: .3px;
+    }
+    .brand-sub {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .main-nav { display: flex; align-items: center; justify-content: center; flex: 1; }
+    .main-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .main-nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      transition: color .2s ease;
+    }
+    .main-nav a:hover { color: var(--gold); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-size: 14.5px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all .2s ease;
+      border: 1.5px solid transparent;
+    }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover { background: #0c9059; }
+    .btn-outline-light {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,.55);
+    }
+    .btn-outline-light:hover { background: rgba(255,255,255,.12); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 26px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .hamburger span {
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+    }
+    .mobile-drawer {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 120;
+      display: flex;
+      flex-direction: column;
+      width: min(82vw, 320px);
+      height: 100vh;
+      padding: 22px 20px;
+      background: var(--near-black);
+      transform: translateX(-100%);
+      transition: transform .3s ease;
+    }
+    .mobile-drawer a {
+      color: rgba(255,255,255,0.88);
+      padding: 12px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-weight: 500;
+    }
+    .mobile-drawer a:last-child { border-bottom: none; }
+    .mobile-drawer .btn { margin-top: 18px; }
+
+    .contact-hero {
+      background: linear-gradient(120deg, rgba(9, 24, 18, 0.96), rgba(8, 18, 13, 0.88)), url('assets/hero.jpg') center/cover no-repeat;
+      padding: 110px 0 80px;
+      color: #fff;
+    }
+    .contact-hero-inner { max-width: 760px; }
+    .eyebrow {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      color: var(--gold);
+    }
+    .contact-hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+    .contact-hero p {
+      font-size: 1.06rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 20px;
+      max-width: 680px;
+    }
+
+    .contact-layout { padding: 60px 24px 80px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 1.2fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .contact-card {
+      background: var(--white);
+      border: 1px solid rgba(18,32,26,0.08);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
+      padding: 28px;
+    }
+    body.dark .contact-card, body.dark .map-card, body.dark .cta-panel {
+      background: #0c1713;
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: none;
+    }
+    .contact-card h2, .contact-card h3, .map-card h3, .cta-panel h3 {
+      margin: 0 0 18px;
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      color: var(--ink);
+    }
+    body.dark .contact-card h2, body.dark .contact-card h3, body.dark .map-card h3, body.dark .cta-panel h3,
+    body.dark .contact-card p, body.dark .contact-card label, body.dark .contact-card input,
+    body.dark .contact-card textarea, body.dark .info-item span, body.dark .info-item strong,
+    body.dark .cta-panel p {
+      color: #edf7f1 !important;
+    }
+    .info-list { display: grid; gap: 18px; }
+    .info-item { display: flex; gap: 14px; align-items: flex-start; }
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14,169,104,.12);
+      color: var(--green);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .info-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .info-item span {
+      color: var(--gray-text);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+    .cta-panel {
+      margin-top: 28px;
+      background: linear-gradient(135deg, rgba(14,169,104,.12), rgba(216,169,75,.08));
+      border: 1px solid rgba(14,169,104,.18);
+      border-radius: 24px;
+      padding: 24px 28px;
+    }
+    .cta-panel h3 { margin: 0 0 8px; }
+    .cta-panel p { margin: 0 0 14px; color: var(--gray-text); }
+    .contact-form { display: grid; gap: 16px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .field { display: grid; gap: 8px; }
+    .field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .field input, .field textarea {
+      width: 100%;
+      border: 1px solid rgba(18,32,26,0.12);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.85);
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .field input:focus, .field textarea:focus {
+      border-color: rgba(14,169,104,0.6);
+      box-shadow: 0 0 0 3px rgba(14,169,104,0.12);
+    }
+    body.dark .field input, body.dark .field textarea {
+      background: rgba(15,23,42,0.7);
+      border-color: rgba(255,255,255,0.08);
+      color: #edf7f1;
+    }
+    .submit-btn {
+      width: fit-content;
+      border: none;
+      border-radius: 999px;
+      background: var(--green);
+      color: #fff;
+      padding: 15px 28px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .submit-btn:hover { background: #0b8f5b; transform: translateY(-1px); }
+    .map-card {
+      margin-top: 28px;
+      background: var(--white);
+      border: 1px solid rgba(18,32,26,0.08);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(17, 24, 39, 0.06);
+      padding: 28px;
+    }
+    .map-shell {
+      min-height: 220px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(14,169,104,.14), rgba(8,18,13,.08));
+      border: 1px solid rgba(14,169,104,.14);
+      display: grid;
+      place-items: center;
+      color: var(--green-dark);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .cta-banner {
+      background: linear-gradient(120deg, var(--green-dark), var(--green-darker));
+      padding: 30px 0;
+    }
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: #fff;
+    }
+    .cta-inner h2 {
+      margin: 0 0 8px;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.08;
+    }
+    .cta-inner p {
+      margin: 0;
+      color: rgba(255,255,255,0.78);
+      max-width: 620px;
+    }
+    .site-footer {
+      background: var(--near-black);
+      color: rgba(255,255,255,0.76);
+      padding: 64px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr 1fr;
+      gap: 32px;
+    }
+    .footer-col h5 {
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .footer-col a, .footer-col p {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      margin-top: 36px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.88rem;
+    }
+    .footer-legal { display: flex; gap: 20px; }
+
+    @media (max-width: 980px) {
+      .main-nav { display: none; }
+      .btn.hide-mobile { display: none; }
+      .hamburger { display: flex; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .cta-inner { flex-direction: column; align-items: flex-start; }
+      .footer-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .container { padding: 0 18px; }
+      .contact-hero { padding-top: 86px; }
+      .contact-layout { padding-top: 42px; }
+      .form-row { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .cta-banner .btn { width: auto; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-brand-lightBg overflow-x-hidden">
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo3.jpg" alt="McDonalds Group" class="brand-logo" onerror="this.style.display='none'">
+        <span class="brand-text">
+          <span class="brand-title">McDonalds</span>
+          <span class="brand-sub">GROUP</span>
+        </span>
+      </a>
 
-    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <a href="affiliate.html" class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
-                        <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-1">
-                    </div>
-                    <div>
-                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
-                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
-                    </div>
-                </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programmes.html">Programmes</a></li>
+          <li><a href="news-events.html">News</a></li>
+          <li><a href="apply.html">Careers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
 
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="affiliate.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Home</a>
-                    <a href="about.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">About Us</a>
-                    <a href="programmes.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Programmes</a>
-                    <a href="admissions.html" class="text-slate-600 hover:text-brand-green font-medium text-sm transition-colors">Admissions</a>
-                    <a href="contact.html" class="text-brand-green font-semibold text-sm transition-colors">Contact Us</a>
-                </nav>
+      <div class="header-actions">
+        <a href="affiliate.html" class="btn btn-outline-light hide-mobile">Affiliate</a>
+        <a href="login.html" class="btn btn-primary hide-mobile">Get Started</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
 
-                <div class="hidden lg:flex items-center">
-                    <a href="login.html" class="bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-2.5 rounded-md font-medium text-sm flex items-center gap-2 transition duration-200 shadow-sm">
-                        <i class="fa-regular fa-user text-xs"></i>
-                        <span>Student Portal</span>
-                    </a>
-                </div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="programmes.html">Programmes</a>
+    <a href="news-events.html">News</a>
+    <a href="apply.html">Careers</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" class="btn btn-primary">Get Started</a>
+  </div>
 
-                <div class="flex lg:hidden items-center">
-                    <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-green focus:outline-none py-2.5 px-4 rounded-lg border border-slate-200 hover:bg-slate-100 transition flex items-center space-x-2">
-                        <i class="fa-solid fa-bars text-sm"></i>
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Menu</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+  <main>
+    <section class="contact-hero">
+      <div class="container contact-hero-inner">
+        <p class="eyebrow">Get in touch</p>
+        <h1>Contact McDonalds Group</h1>
+        <p>We’re here to help with admissions, programme information, student support, event enquiries, and partnerships. Reach out to our team and let’s start the conversation.</p>
+      </div>
+    </section>
 
-    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300"></div>
-
-    <div id="mobile-drawer" class="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        <div class="flex items-center justify-between p-5 border-b border-gray-100">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
-                    <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-0.5">
-                </div>
+    <section class="contact-layout">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h2>Reach us directly</h2>
+            <div class="info-list">
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
                 <div>
-                    <div class="text-base font-extrabold text-brand-green leading-none">McDONALDS</div>
-                    <div class="text-[8px] font-bold text-brand-green tracking-wider uppercase mt-1 leading-none">Educational Services</div>
+                  <strong>Visit us</strong>
+                  <span>Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes, Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road, Ibadan.</span>
                 </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <strong>Call us</strong>
+                  <span>07036282476</span>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <strong>Call us</strong>
+                  <span>09150739629</span>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <strong>Email us</strong>
+                  <span>info@mcdonaldsgroup.org</span>
+                </div>
+              </div>
             </div>
-            <button id="close-drawer-btn" class="text-slate-400 hover:text-brand-green p-1 focus:outline-none">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+
+            <div class="cta-panel">
+              <h3>Need help with admissions?</h3>
+              <p>Our team can guide you through application steps, payment options, and required documents.</p>
+              <a href="login.html" class="btn btn-primary">Open Student Portal</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>Send us a message</h3>
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Full name</label>
+                  <input id="name" name="full_name" type="text" placeholder="Your name" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email address</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field">
+                  <label for="phone">Phone number</label>
+                  <input id="phone" name="phone" type="tel" placeholder="0803 000 0000" required>
+                </div>
+                <div class="field">
+                  <label for="subject">Subject</label>
+                  <input id="subject" name="subject" type="text" placeholder="How can we help?" required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us more about your inquiry..." required></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+          </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto px-4 py-6 space-y-2">
-            <a href="affiliate.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
-                <i class="fa-solid fa-house text-base text-slate-400 shrink-0"></i>
-                <span>Home</span>
-            </a>
-            <a href="about.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
-                <i class="fa-solid fa-circle-info text-base text-slate-400 shrink-0"></i>
-                <span>About Us</span>
-            </a>
-            <a href="programmes.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
-                <i class="fa-solid fa-book text-base text-slate-400 shrink-0"></i>
-                <span>Programmes</span>
-            </a>
-            <a href="apply.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
-                <i class="fa-solid fa-file-lines text-base text-slate-400 shrink-0"></i>
-                <span>Admissions</span>
-            </a>
-            <a href="contact.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-bold bg-green-50 text-brand-green transition">
-                <i class="fa-solid fa-envelope text-base shrink-0"></i>
-                <span>Contact Us</span>
-            </a>
-            <a href="login.html" class="flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-semibold text-slate-600 hover:text-brand-green hover:bg-slate-50 transition">
-                <i class="fa-solid fa-right-to-bracket text-base text-slate-400 shrink-0"></i>
-                <span>Student Portal</span>
-            </a>
+        <div class="map-card">
+          <h3>Our campus and contact hub</h3>
+          <div class="map-shell">Ibadan Study Centre</div>
         </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <div class="container cta-inner">
+        <div>
+          <h2>Join the McDonalds Group family</h2>
+          <p>Whether you’re pursuing quality education, planning an event, or shaping your next big idea, we’re ready to help you move forward.</p>
+        </div>
+        <a href="apply.html" class="btn btn-outline-light">Start Your Journey <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="assets/logo3.jpg" alt="McDonalds Group" class="brand-logo" onerror="this.style.display='none'">
+          <div class="brand-text">
+            <span class="brand-title">McDonalds</span>
+            <span class="brand-sub">GROUP</span>
+          </div>
+        </div>
+        <p>Building a future through education, media, events, and meaningful partnerships.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Our Companies</h5>
+        <a href="schools.html">McDonalds Educational Services</a>
+        <a href="affiliate.html">BOUESTI Affiliate Degree</a>
+        <a href="news-events.html">Media &amp; Events</a>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact Info</h5>
+        <p><i class="fa-solid fa-location-dot"></i> Ibadan, Nigeria</p>
+        <p><i class="fa-solid fa-envelope"></i> info@mcdonaldsgroup.org</p>
+        <p><i class="fa-solid fa-phone"></i> 07036282476</p>
+        <p><i class="fa-solid fa-phone"></i> 09150739629</p>
+      </div>
     </div>
 
-    <main>
-        <section class="bg-brand-navy text-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-                <div class="max-w-3xl">
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-300">Get in touch</p>
-                    <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">Contact McDonalds Educational Services</h1>
-                    <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed">
-                        We are here to help with admissions, programme information, student support, and any questions about our affiliated services.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="space-y-6">
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-                        <h2 class="text-xl font-bold text-slate-800">Reach us directly</h2>
-                        <div class="mt-6 space-y-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-slate-800">Visit us</p>
-                                    <p class="text-sm text-slate-600">Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
-                                    <i class="fa-solid fa-phone"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-slate-800">Call us</p>
-                                    <p class="text-sm text-slate-600">+234 803 123 4567</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start gap-3">
-                                <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-brand-green">
-                                    <i class="fa-solid fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-slate-800">Email us</p>
-                                    <p class="text-sm text-slate-600">affiliate@buesti.edu.ng</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-emerald-50 rounded-2xl border border-emerald-100 p-6">
-                        <h3 class="text-lg font-bold text-slate-800">Need help with admission?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-                            Our support team can guide you through application steps, payment options, and required documents.
-                        </p>
-                        <a href="login.html" class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-brand-green hover:text-brand-hoverGreen">
-                            <span>Open Student Portal</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-                    <h2 class="text-xl font-bold text-slate-800">Send us a message</h2>
-                    <form class="mt-6 space-y-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Full name</label>
-                                <input type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="Your name">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Email address</label>
-                                <input type="email" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="you@example.com">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Phone number</label>
-                                <input type="tel" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="0803 000 0000">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
-                                <input type="text" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="How can we help?">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
-                            <textarea rows="5" class="w-full border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-green/20" placeholder="Tell us more about your inquiry..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full sm:w-auto bg-brand-green hover:bg-brand-hoverGreen text-white px-6 py-3 rounded-lg font-semibold transition duration-200">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-[#01140c] text-slate-300 pt-16 pb-8 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
-                            <img src="assets/logo.jpg" alt="McDonalds Logo" class="w-full h-full object-contain p-1">
-                        </div>
-                        <div>
-                            <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI/McDONALDS</div>
-                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
-                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Ibadan Study Centre</div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed pt-2">
-                        Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Location - Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.
-                    </p>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-semibold text-sm">Quick Links</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="affiliate.html" class="hover:text-white transition">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
-                        <li><a href="programmes.html" class="hover:text-white transition">Programmes</a></li>
-                        <li><a href="admissions.html" class="hover:text-white transition">Admissions</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-semibold text-sm">Resources</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="login.html" class="hover:text-white transition">Student Portal</a></li>
-                        <li><a href="faqs.html" class="hover:text-white transition">FAQs</a></li>
-                        <li><a href="downloads.html" class="hover:text-white transition">Downloads</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-4">
-                    <h4 class="text-white font-semibold text-sm">Contact Us</h4>
-                    <ul class="space-y-3 text-xs text-slate-400">
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
-                            <span>Bamidele Olumilua University of Education, Science and Technology Ikere-Ekiti (BOUESTI) Directorate of Part-Time Programmes. Bishop Phillips Academy, along Iwo-Ibadan Road, Iwo-Road Ibadan.</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <i class="fa-solid fa-phone text-emerald-600"></i>
-                            <span>+234 803 123 4567</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <i class="fa-solid fa-envelope text-emerald-600"></i>
-                            <span>affiliate@buesti.edu.ng</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-slate-800/80 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-                <p>© 2026 BOUESTI/McDONALDS Educational Services. All rights reserved.</p>
-            </div>
+    <div class="container footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>© 2026 McDonalds Group. All Rights Reserved.</p>
+        <div class="footer-legal">
+          <a href="index.html">Privacy Policy</a>
+          <a href="index.html">Terms &amp; Conditions</a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const closeBtn = document.getElementById('close-drawer-btn');
-        const overlay = document.getElementById('mobile-overlay');
-        const drawer = document.getElementById('mobile-drawer');
+  <script>
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
 
-        const openDrawer = () => {
-            overlay.classList.remove('hidden');
-            requestAnimationFrame(() => {
-                overlay.classList.remove('opacity-0');
-                overlay.classList.add('opacity-100');
-                drawer.classList.remove('-translate-x-full');
-            });
-        };
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = mobileDrawer.style.transform === 'translateX(0%)';
+      mobileDrawer.style.transform = isOpen ? 'translateX(-100%)' : 'translateX(0%)';
+    });
 
-        const closeDrawer = () => {
-            overlay.classList.remove('opacity-100');
-            overlay.classList.add('opacity-0');
-            drawer.classList.add('-translate-x-full');
-            setTimeout(() => overlay.classList.add('hidden'), 300);
-        };
+    mobileDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.style.transform = 'translateX(-100%)';
+      });
+    });
 
-        menuBtn?.addEventListener('click', openDrawer);
-        closeBtn?.addEventListener('click', closeDrawer);
-        overlay?.addEventListener('click', closeDrawer);
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') closeDrawer();
-        });
-    </script>
-    <style>
-        :root { color-scheme: light; }
-        body.dark { background-color: #020617; color: #f8fafc; }
-        body.dark header,
-        body.dark main,
-        body.dark aside,
-        body.dark .bg-white,
-        body.dark .bg-slate-50,
-        body.dark .bg-slate-100,
-        body.dark .bg-brand-lightBg,
-        body.dark .bg-brand-navy,
-        body.dark .rounded-2xl,
-        body.dark .rounded-xl,
-        body.dark .rounded-lg {
-            background-color: #111827 !important;
-            color: #f8fafc !important;
-        }
-        body.dark .text-slate-800,
-        body.dark .text-slate-700,
-        body.dark .text-slate-600,
-        body.dark .text-slate-500,
-        body.dark .text-gray-800,
-        body.dark .text-gray-700,
-        body.dark .text-slate-400,
-        body.dark .text-gray-600,
-        body.dark p,
-        body.dark span {
-            color: #e5e7eb !important;
-        }
-        body.dark .border-slate-100,
-        body.dark .border-slate-200,
-        body.dark .border-gray-100,
-        body.dark .border-white\/10,
-        body.dark .border-slate-300 {
-            border-color: #334155 !important;
-        }
-        body.dark .text-brand-green {
-            color: #4ade80 !important;
-        }
-        body.dark .bg-brand-green {
-            background-color: #15803d !important;
-        }
-        body.dark .bg-brand-hoverGreen:hover {
-            background-color: #166534 !important;
-        }
-        body.dark #theme-toggle-btn {
-            background: #111827;
-            color: #f8fafc;
-            border-color: #475569;
-        }
-    </style>
-    <script>
-        (function () {
-            const storageKey = 'mcdonalds-theme';
-            const button = document.createElement('button');
-            button.id = 'theme-toggle-btn';
-            button.type = 'button';
-            button.className = 'fixed bottom-4 right-4 z-[70] flex items-center gap-2 rounded-full border border-slate-300 bg-white/90 px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100';
-            button.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
-            document.body.appendChild(button);
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-            function applyTheme() {
-                const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                document.body.classList.toggle('dark', dark);
-                document.documentElement.classList.toggle('dark', dark);
-                const icon = button.querySelector('i');
-                const label = button.querySelector('.theme-toggle-label');
-                if (dark) {
-                    icon.className = 'fa-solid fa-sun';
-                    label.textContent = 'Light mode';
-                } else {
-                    icon.className = 'fa-solid fa-moon';
-                    label.textContent = 'Dark mode';
-                }
-            }
+        const formData = new FormData(contactForm);
+        const fullName = (formData.get('full_name') || '').toString().trim();
+        const email = (formData.get('email') || '').toString().trim();
+        const phone = (formData.get('phone') || '').toString().trim();
+        const subject = (formData.get('subject') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
 
-            button.addEventListener('click', () => {
-                const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
-                localStorage.setItem(storageKey, nextTheme);
-                applyTheme();
-            });
+        const whatsappNumber = '2349150739629';
+        const whatsappText = [
+          'New message from McDonalds Group website',
+          '',
+          `Full name: ${fullName}`,
+          `Email: ${email}`,
+          `Phone: ${phone}`,
+          `Subject: ${subject}`,
+          '',
+          'Message:',
+          message
+        ].join('\n');
 
-            applyTheme();
-        })();
-    </script>
+        window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+      });
+    }
+
+    const storageKey = 'mcdonalds-theme';
+    const toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.id = 'theme-toggle-btn';
+    toggleBtn.className = 'fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white shadow-2xl transition hover:scale-[1.02]';
+    toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i><span class="theme-toggle-label">Dark mode</span>';
+    document.body.appendChild(toggleBtn);
+
+    function applyTheme() {
+      const dark = localStorage.getItem(storageKey) === 'dark' || (!localStorage.getItem(storageKey) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.body.classList.toggle('dark', dark);
+      document.documentElement.classList.toggle('dark', dark);
+
+      const icon = toggleBtn.querySelector('i');
+      const label = toggleBtn.querySelector('.theme-toggle-label');
+
+      if (dark) {
+        toggleBtn.className = 'fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-slate-100 px-4 py-2.5 text-xs font-semibold text-slate-900 shadow-2xl transition hover:scale-[1.02]';
+        icon.className = 'fa-solid fa-sun';
+        label.textContent = 'Light mode';
+      } else {
+        toggleBtn.className = 'fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-900 px-4 py-2.5 text-xs font-semibold text-white shadow-2xl transition hover:scale-[1.02]';
+        icon.className = 'fa-solid fa-moon';
+        label.textContent = 'Dark mode';
+      }
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem(storageKey, nextTheme);
+      applyTheme();
+    });
+
+    applyTheme();
+  </script>
 </body>
 </html>

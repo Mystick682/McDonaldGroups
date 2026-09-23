@@ -131,6 +131,10 @@
                 <h4 class="text-xs font-bold text-white">Need Help?</h4>
                 <p class="text-[10px] text-slate-500 leading-relaxed">Contact support if you need any assistance.</p>
             </div>
+            <div class="space-y-2 text-[10px] text-slate-300">
+                <a href="tel:07036282476" class="block hover:text-white transition">07036282476</a>
+                <a href="tel:09150739629" class="block hover:text-white transition">09150739629</a>
+            </div>
             <a href="#" class="flex items-center justify-center space-x-2 w-full bg-white/5 border border-white/10 hover:border-white text-slate-300 hover:text-white py-2.5 rounded-lg text-xs font-semibold transition">
                 <i class="fa-solid fa-headset text-[10px]"></i>
                 <span>Contact Support</span>
@@ -673,14 +677,15 @@
 
         // --- Automated WhatsApp Click-To-Chat routing ---
         function dispatchToWhatsApp() {
-            const phoneNumber = "2349150739629"; // Official flyer hotline
+            const phoneNumbers = ["2347036282476", "2349150739629"]; // Official flyer hotlines
+            const primaryPhone = phoneNumbers[1];
             const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
             
             // Build heavily detailed structured verification message template
             const message = `Hello BOUESTI Accounts Directorate,\n\nI have just submitted my tuition transfer receipt on the portal and would like to finalize verification.\n\nHere are my transaction details:\n- Student Name: ${activeStudent.full_name}\n- Matric Number: ${activeStudent.matric_number}\n- Amount Transferred: ₦${finalTransferredAmt.toLocaleString('en-NG', { minimumFractionDigits: 2 })}\n- Sender Account Details: ${document.getElementById('inp-sender-details').value}\n- Transaction ID / Ref: ${finalRefId}\n- Payment Date: ${dateStr}\n\nI am attaching my transfer receipt image below for confirmation. Thank you.`;
             
             const encodedMessage = encodeURIComponent(message);
-            const waUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+            const waUrl = `https://api.whatsapp.com/send?phone=${primaryPhone}&text=${encodedMessage}`;
             
             // Open WA in a clean separate window, prompting user to click send and attach their file
             window.open(waUrl, '_blank');
