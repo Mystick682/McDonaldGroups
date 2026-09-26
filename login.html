@@ -387,7 +387,7 @@
             event.preventDefault();
             hideAlert();
 
-            const fullName = document.getElementById('reg-fullname').value;
+            const fullName = document.getElementById('reg-fullname').value.trim();
             const matric = document.getElementById('reg-matric').value.toUpperCase().trim();
             const email = document.getElementById('reg-email').value.trim();
             const phone = document.getElementById('reg-phone').value.trim();
@@ -400,24 +400,41 @@
                 return;
             }
 
+            if (!matric) {
+                showAlert('error', "Please enter your matriculation number.");
+                return;
+            }
+
             try {
-                // 1. Verify if matriculation number exists in application index & is approved
-                // Retrieve the approved application including the 'passport_url'
+                // Retrieve the full application record for this matric number — this
+                // is where the student's verified name, programme and application ID
+                // come from, so we don't ask them to re-type anything we already have.
                 const { data: appData, error: appErr } = await supabaseClient
                     .from('applications')
                     .select('*')
                     .eq('matric_number', matric)
-                    .eq('status', 'approved')
                     .maybeSingle();
 
                 if (appErr) throw appErr;
 
                 if (!appData) {
-                    showAlert('error', "Verification Failed: This matriculation number is either invalid or has not been approved by the Directorate.");
+                    showAlert('error', "Verification Failed: This matriculation number does not match an admitted student record.");
                     return;
                 }
 
-                // 2. Verify if this matriculation number is already registered in student_accounts
+                // acceptance_fee_status === 'paid' is what the verification trigger
+                // sets; the other checks are kept for records created before that
+                // trigger existed.
+                const isAccepted =
+                    appData.acceptance_fee_status === 'paid' ||
+                    [true, 'true'].includes(appData.acceptance_fee_paid) ||
+                    ['acceptance_fee_paid', 'matric_number_generated', 'account_activated'].includes((appData.status || '').toLowerCase());
+
+                if (!isAccepted || !appData.matric_number) {
+                    showAlert('error', "Account activation is blocked until the admission has been accepted, acceptance fee is verified, and a matriculation number is generated.");
+                    return;
+                }
+
                 const { data: existingAccount, error: accCheckErr } = await supabaseClient
                     .from('student_accounts')
                     .select('*')
@@ -431,7 +448,6 @@
                     return;
                 }
 
-                // 2b. Verify if email is already used (prevents unique constraint DB error)
                 const { data: emailExists, error: emailCheckErr } = await supabaseClient
                     .from('student_accounts')
                     .select('id')
@@ -444,7 +460,9 @@
                     return;
                 }
 
-                // 3. Save details to student_accounts table in Supabase, copying the passport_url
+                // Only columns that actually exist on student_accounts:
+                // id, matric_number, full_name, email, phone, password, created_at,
+                // total_fees, id_paid, total_paid, last_payment_date, passport_url.
                 const { error: insertErr } = await supabaseClient
                     .from('student_accounts')
                     .insert([
@@ -454,19 +472,25 @@
                             email: email,
                             phone: phone,
                             password: password,
-                            passport_url: appData.passport_url || null // Copies the verified passport photo url
+                            passport_url: appData.passport_url || null
                         }
                     ]);
 
                 if (insertErr) throw insertErr;
 
-                // On successful signup
-                showAlert('success', "Account Created Successfully! Your profile is verified. Switch to the Login tab to access your student panel.");
+                await supabaseClient
+                    .from('applications')
+                    .update({
+                        status: 'account_activated',
+                        account_activation_status: 'activated'
+                    })
+                    .eq('application_id', appData.application_id);
+
+                showAlert('success', "Account Created Successfully! Your profile is verified and ready for student login.");
                 document.getElementById('signup-form').reset();
                 setTimeout(() => toggleForm('login'), 2000);
 
             } catch (err) {
-                // Friendly fallback for unique-constraint errors that slip through
                 const msg = (err && err.message) ? err.message : String(err);
                 if (msg.includes('student_accounts_email_key') || /duplicate key value/.test(msg)) {
                     showAlert('error', 'Registration Error: An account with this email already exists. Try logging in or use password recovery.');
@@ -485,7 +509,10 @@
             const password = document.getElementById('login-password').value;
 
             try {
-                // Search student accounts table for match
+                // select('*') returns whatever columns student_accounts actually has
+                // (matric_number, full_name, email, phone, passport_url, etc.) — the
+                // dashboard can read this session object directly with no further
+                // Supabase calls.
                 const { data: student, error: loginErr } = await supabaseClient
                     .from('student_accounts')
                     .select('*')
@@ -500,7 +527,7 @@
                     return;
                 }
 
-                // Log session details locally
+                // Full record is stored here so the dashboard can render immediately.
                 localStorage.setItem('bouesti_student_session', JSON.stringify(student));
 
                 showAlert('success', `Welcome back, ${student.full_name}! Redirecting to student panel dashboard...`);

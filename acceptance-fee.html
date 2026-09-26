@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceptance Fee - BOUESTI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="icon" type="image/png" href="assets/icon.jpg">
+    <link rel="apple-touch-icon" href="assets/icon.jpg">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#0e5c33',
+                            hoverGreen: '#0a4224',
+                            navy: '#011c11',
+                            gold: '#dfa510',
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-brand-lightBg min-h-screen">
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                        <img src="assets/logo.jpg" alt="BUESTI Logo" class="w-full h-full object-contain p-1">
+                    </div>
+                    <div>
+                        <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">McDONALDS</div>
+                        <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                    </div>
+                </div>
+                <a href="bouesti.html" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-brand-green transition">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Back to Home</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div id="alert-box" class="hidden rounded-2xl border p-4 mb-6 shadow-sm" role="alert" aria-live="polite"></div>
+
+        <div id="loading-box" class="bg-white rounded-2xl border border-slate-100 shadow-md p-8 sm:p-12 text-center">
+            <div class="w-14 h-14 border-4 border-brand-green border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p class="mt-6 text-sm font-bold text-slate-800">Loading admission status...</p>
+        </div>
+
+        <div id="access-blocked" class="hidden bg-white rounded-2xl border border-slate-100 shadow-md p-8 sm:p-10 text-center space-y-5">
+            <div class="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center text-2xl mx-auto">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <h1 class="text-2xl font-black text-slate-800">Admission not yet eligible</h1>
+            <p class="text-sm text-slate-500 leading-relaxed max-w-lg mx-auto">
+                This page is only available after the admission has been accepted by the school. Please complete the admission review process before attempting to pay the acceptance fee.
+            </p>
+            <a href="apply.html" class="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-3 rounded-lg text-sm font-bold transition">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Return to application</span>
+            </a>
+        </div>
+
+        <div id="accepted-card" class="hidden bg-white rounded-2xl border border-slate-100 shadow-md overflow-hidden">
+            <div class="bg-brand-navy text-white p-6 sm:p-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-brand-gold text-xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-400">Admission Update</p>
+                        <h1 class="text-2xl font-black">Admission Accepted</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
+                    <p class="font-bold">Congratulations! Your admission has been accepted.</p>
+                    <p class="mt-1 text-emerald-800/80">Complete the acceptance fee to continue your registration and receive your matriculation number.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Student Name</p>
+                        <p id="student-name" class="mt-2 font-bold text-slate-800">Loading...</p>
+                    </div>
+                    <div class="border border-slate-200 rounded-xl p-4">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Programme</p>
+                        <p id="student-programme" class="mt-2 font-bold text-slate-800">Loading...</p>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                    <div class="flex items-center justify-between gap-3 flex-wrap">
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700">Acceptance fee</p>
+                            <p class="text-3xl font-black text-amber-900 mt-2">₦25,000</p>
+                        </div>
+                        <span id="fee-status-pill" class="px-3 py-1 rounded-full bg-white border border-amber-200 text-amber-700 text-[10px] font-bold uppercase tracking-wider">
+                            Pending
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <div>
+                        <p class="text-sm font-bold text-slate-700">Already sent your proof of payment?</p>
+                        <p class="text-xs text-slate-500 mt-0.5">Verification status opens in its own window — you can revisit it anytime, from any device, using the same link.</p>
+                    </div>
+                    <button id="open-status-btn" type="button" class="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-900 text-white px-4 py-2.5 rounded-lg text-xs font-bold transition shrink-0">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>Check Verification Status</span>
+                    </button>
+                </div>
+
+                <div id="rejected-notice" class="hidden rounded-2xl border border-rose-200 bg-rose-50 p-5 space-y-2 text-left">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-rose-500"></i>
+                        <p class="font-bold text-rose-900">Your last proof of payment wasn't verified</p>
+                    </div>
+                    <p id="rejected-notice-text" class="text-sm text-rose-800/80"></p>
+                    <p class="text-xs text-rose-700/70">Please double-check your details and submit a new proof of payment below.</p>
+                </div>
+
+                <form id="acceptance-fee-form" class="space-y-5">
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Transaction / Teller Number <span class="text-rose-500">*</span></label>
+                        <input id="transaction-ref" type="text" required placeholder="e.g. AF-2026-48291" class="w-full p-3 border border-slate-200 rounded-lg text-sm focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Bank / Payment Details <span class="text-rose-500">*</span></label>
+                        <input id="payment-details" type="text" required placeholder="e.g. First Bank 2027416888 / Mr. Adewale" class="w-full p-3 border border-slate-200 rounded-lg text-sm focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 focus:outline-none">
+                    </div>
+
+                    <button type="submit" id="submit-proof-btn" class="w-full bg-brand-green hover:bg-brand-hoverGreen text-white py-3.5 rounded-lg font-bold text-sm transition shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Send Proof of Acceptance Payment</span>
+                    </button>
+                </form>
+
+                <div id="sent-stage" class="hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-5 space-y-3 text-center">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </div>
+                    <p class="font-bold text-emerald-900">Proof of payment sent</p>
+                    <p class="text-sm text-emerald-800/80 max-w-md mx-auto">Your acceptance-fee proof has been received and is awaiting verification. Your matriculation number will be generated as soon as it's verified.</p>
+                    <button id="view-status-after-send" type="button" class="inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-3 rounded-lg text-sm font-bold transition">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                        <span>View Verification Status</span>
+                    </button>
+                </div>
+
+                <div id="already-verified" class="hidden rounded-2xl border border-emerald-200 bg-emerald-50 p-5 space-y-3 text-center">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <p class="font-bold text-emerald-900">Your acceptance fee has already been verified.</p>
+                    <button id="go-to-status-verified" type="button" class="inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-brand-hoverGreen text-white px-5 py-3 rounded-lg text-sm font-bold transition">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>View Matric Number & Continue</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-[#01140c] text-slate-300 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden shrink-0">
+                            <img src="assets/logo.jpg" alt="BOUESTI Logo" class="w-full h-full object-contain p-1">
+                        </div>
+                        <div>
+                            <div class="text-xl font-extrabold text-brand-green leading-none tracking-wide">BOUESTI/McDONALDS</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Educational Services</div>
+                            <div class="text-[9px] font-bold text-brand-green tracking-widest mt-0.5 uppercase">Ibadan Study Centre</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed pt-2">
+                        Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti, in affiliation with McDONALDS Educational Services.
+                    </p>
+                    <div class="pt-2 space-y-2.5 text-xs text-slate-400">
+                        <div>
+                            <span class="block font-bold text-white">Ibadan Study Centre</span>
+                            <span>Bishop Phillips Academy, Ibadan-Iwo Road, Monatan, Iwo Road, Ibadan.</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-white">Main Campus</span>
+                            <span>Igbara-Odo Road, P.M.B. 250, Ikere Ekiti, Ekiti State</span>
+                            <span>Nigeria</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Quick Links</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="bouesti.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="programmes.html" class="hover:text-white transition">Programmes</a></li>
+                        <li><a href="bouesti.html" class="hover:text-white transition">Affiliates</a></li>
+                        <li><a href="gallery.html" class="hover:text-white transition">Gallery</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Resources</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="admissions.html" class="hover:text-white transition">Admissions</a></li>
+                        <li><a href="student-portal.html" class="hover:text-white transition">Student Portal</a></li>
+                        <li><a href="faqs.html" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="downloads.html" class="hover:text-white transition">Downloads</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-white font-semibold text-sm">Contact Us</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
+                            <span><span class="font-bold text-white">Ibadan Study Centre:</span> Bishop Phillips Academy, Ibadan-Iwo Road, Monatan, Iwo Road, Ibadan.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-emerald-600"></i>
+                            <span><span class="font-bold text-white">Main Campus:</span> Igbara-Odo Road, P.M.B. 250, Ikere Ekiti, Ekiti State, Nigeria</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-phone text-emerald-600"></i>
+                            <div class="flex flex-wrap gap-3">
+                                <span>07036282476</span>
+                                <span>09150739629</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fa-solid fa-envelope text-emerald-600"></i>
+                            <a href="mailto:bouestiedu@mcdonaldsgroup.org" class="text-emerald-400 hover:text-emerald-300 underline underline-offset-2">bouestiedu@mcdonaldsgroup.org</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800/80 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 BOUESTI/McDONALDS Educational Services. All rights reserved.</p>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="w-7 h-7 rounded-full border border-slate-700 hover:border-white text-slate-400 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-brands fa-facebook-f text-[10px]"></i>
+                    </a>
+                    <a href="#" class="w-7 h-7 rounded-full border border-slate-700 hover:border-white text-slate-400 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-brands fa-twitter text-[10px]"></i>
+                    </a>
+                    <a href="#" class="w-7 h-7 rounded-full border border-slate-700 hover:border-white text-slate-400 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-brands fa-linkedin-in text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const SUPABASE_URL = "https://mnevighhtmtekfluaygh.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uZXZpZ2hodG10ZWtmbHVheWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MDM5MDIsImV4cCI6MjA5OTE3OTkwMn0.f3bJtvUKmjLILg5wbKumEWOf0JfH8yHbzCzcJ4Xx3bU";
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentAppData = null;
+
+        function showAlert(type, message) {
+            const el = document.getElementById('alert-box');
+            el.className = 'rounded-2xl border p-4 mb-6 shadow-sm';
+            el.classList.remove('hidden');
+            if (type === 'success') {
+                el.classList.add('border-emerald-200', 'bg-emerald-50', 'text-emerald-800');
+                el.innerHTML = `<div class="flex items-start gap-3"><div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/70"><i class="fa-solid fa-circle-check text-base"></i></div><div><p class="font-semibold">Success</p><p class="mt-1 text-sm leading-relaxed">${message}</p></div></div>`;
+            } else {
+                el.classList.add('border-rose-200', 'bg-rose-50', 'text-rose-800');
+                el.innerHTML = `<div class="flex items-start gap-3"><div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/70"><i class="fa-solid fa-circle-exclamation text-base"></i></div><div><p class="font-semibold">Action required</p><p class="mt-1 text-sm leading-relaxed">${message}</p></div></div>`;
+            }
+        }
+
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || '';
+        }
+
+        function getApplicationId() {
+            return getQueryParam('application_id') || localStorage.getItem('bouesti_latest_application_id') || '';
+        }
+
+        function openStatusWindow(applicationId) {
+            if (!applicationId) return;
+            const url = `acceptance-status.html?application_id=${encodeURIComponent(applicationId)}`;
+            // Named window target so repeated clicks re-use / re-focus the same tab
+            // instead of opening a new one every time.
+            window.open(url, 'bouestiVerificationStatus');
+        }
+
+        async function loadAdmissionStatus() {
+            const applicationId = getApplicationId();
+            const loadingBox = document.getElementById('loading-box');
+            const blocked = document.getElementById('access-blocked');
+            const card = document.getElementById('accepted-card');
+
+            if (!applicationId) {
+                loadingBox.classList.add('hidden');
+                blocked.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('applications')
+                    .select('*')
+                    .eq('application_id', applicationId)
+                    .maybeSingle();
+
+                if (error) throw error;
+
+                if (!data) {
+                    loadingBox.classList.add('hidden');
+                    blocked.classList.remove('hidden');
+                    return;
+                }
+
+                const normalizedStatus = String(data.status || '').toLowerCase();
+                const acceptedStatuses = ['approved', 'admission_accepted', 'acceptance_fee_pending', 'acceptance_fee_paid', 'matric_number_generated', 'account_activated'];
+
+                if (!acceptedStatuses.includes(normalizedStatus) && data.acceptance_fee_paid !== true && data.acceptance_fee_paid !== 'true' && !data.matric_number) {
+                    loadingBox.classList.add('hidden');
+                    blocked.classList.remove('hidden');
+                    return;
+                }
+
+                currentAppData = data;
+                localStorage.setItem('bouesti_latest_application_id', applicationId);
+
+                loadingBox.classList.add('hidden');
+                card.classList.remove('hidden');
+                document.getElementById('student-name').innerText = `${data.surname || ''} ${data.first_name || ''}`.trim() || 'Applicant';
+                document.getElementById('student-programme').innerText = data.programme || 'Program not specified';
+
+                const isVerified = Boolean(data.matric_number) && (data.acceptance_fee_status === 'paid' || data.acceptance_fee_paid === true || data.acceptance_fee_paid === 'true');
+                const feePill = document.getElementById('fee-status-pill');
+
+                if (isVerified) {
+                    feePill.innerText = 'Paid';
+                    feePill.className = 'px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-bold uppercase tracking-wider';
+                    document.getElementById('acceptance-fee-form').classList.add('hidden');
+                    document.getElementById('sent-stage').classList.add('hidden');
+                    document.getElementById('rejected-notice').classList.add('hidden');
+                    document.getElementById('already-verified').classList.remove('hidden');
+                    return;
+                }
+
+                // Not yet verified — check the latest proof of payment, if any, so we
+                // know whether to show the form, a "sent, awaiting verification"
+                // message, or a "that one was rejected, try again" notice.
+                const { data: existingPayments } = await supabaseClient
+                    .from('acceptance_fee_payments')
+                    .select('id, status, reviewer_notes')
+                    .eq('application_id', data.id)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+
+                const latestPayment = (existingPayments && existingPayments[0]) || null;
+
+                document.getElementById('rejected-notice').classList.add('hidden');
+                document.getElementById('sent-stage').classList.add('hidden');
+                document.getElementById('acceptance-fee-form').classList.remove('hidden');
+
+                if (latestPayment) {
+                    if (latestPayment.status === 'rejected') {
+                        const noteEl = document.getElementById('rejected-notice-text');
+                        noteEl.innerText = latestPayment.reviewer_notes
+                            ? latestPayment.reviewer_notes
+                            : 'We were unable to verify your last submission.';
+                        document.getElementById('rejected-notice').classList.remove('hidden');
+                        // form stays visible so they can resubmit
+                    } else {
+                        // pending_verification (or any other non-final state)
+                        document.getElementById('acceptance-fee-form').classList.add('hidden');
+                        document.getElementById('sent-stage').classList.remove('hidden');
+                    }
+                }
+
+            } catch (err) {
+                loadingBox.classList.add('hidden');
+                blocked.classList.remove('hidden');
+                showAlert('error', `Unable to load your admission record. ${err.message || err}`);
+            }
+        }
+
+        document.getElementById('acceptance-fee-form')?.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            const applicationId = getApplicationId();
+            const transactionRef = document.getElementById('transaction-ref').value.trim();
+            const paymentDetails = document.getElementById('payment-details').value.trim();
+            const submitBtn = document.getElementById('submit-proof-btn');
+
+            if (!applicationId) {
+                showAlert('error', 'Application reference not found. Please go back to your admission record.');
+                return;
+            }
+            if (!transactionRef || !paymentDetails) {
+                showAlert('error', 'Please complete the payment reference and bank details before submitting.');
+                return;
+            }
+            if (!currentAppData) {
+                showAlert('error', 'Your application record has not finished loading. Please wait a moment and try again.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+            try {
+                const { data: existingPayments, error: existingErr } = await supabaseClient
+                    .from('acceptance_fee_payments')
+                    .select('id, status')
+                    .eq('application_id', currentAppData.id)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+
+                if (existingErr) throw existingErr;
+
+                const latestPayment = (existingPayments && existingPayments[0]) || null;
+
+                // Only block a resubmission if the latest proof is still pending or
+                // already verified. A rejected proof is fine to replace.
+                if (latestPayment && latestPayment.status !== 'rejected') {
+                    showAlert('error', 'A proof of payment has already been submitted for this application. Please check your verification status instead.');
+                    document.getElementById('acceptance-fee-form').classList.add('hidden');
+                    document.getElementById('sent-stage').classList.remove('hidden');
+                    return;
+                }
+
+                const { error: insertErr } = await supabaseClient
+                    .from('acceptance_fee_payments')
+                    .insert([{
+                        application_id: currentAppData.id,
+                        reference_id: transactionRef,
+                        amount_paid: 25000,
+                        sender_details: paymentDetails,
+                        status: 'pending_verification'
+                    }]);
+
+                if (insertErr) throw insertErr;
+
+                // Convenience mirror on the applications row — not required by the
+                // verification function, just lets other admin views see it easily.
+                await supabaseClient
+                    .from('applications')
+                    .update({ acceptance_fee_status: 'pending_verification' })
+                    .eq('id', currentAppData.id);
+
+                showAlert('success', 'Proof of payment sent successfully. We will verify it shortly — you can track the status anytime.');
+                document.getElementById('acceptance-fee-form').classList.add('hidden');
+                document.getElementById('rejected-notice').classList.add('hidden');
+                document.getElementById('sent-stage').classList.remove('hidden');
+                document.getElementById('sent-stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                openStatusWindow(applicationId);
+
+            } catch (err) {
+                const message = (err && err.message) ? err.message : String(err);
+                if (message.toLowerCase().includes('duplicate') || message.toLowerCase().includes('unique')) {
+                    showAlert('error', 'This transaction reference has already been used for an acceptance-fee payment.');
+                } else {
+                    showAlert('error', `Payment proof could not be submitted. ${message}`);
+                }
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        });
+
+        document.getElementById('open-status-btn')?.addEventListener('click', function () {
+            const applicationId = getApplicationId();
+            if (!applicationId) {
+                showAlert('error', 'Application reference not found.');
+                return;
+            }
+            openStatusWindow(applicationId);
+        });
+
+        document.getElementById('view-status-after-send')?.addEventListener('click', function () {
+            openStatusWindow(getApplicationId());
+        });
+
+        document.getElementById('go-to-status-verified')?.addEventListener('click', function () {
+            openStatusWindow(getApplicationId());
+        });
+
+        window.addEventListener('DOMContentLoaded', loadAdmissionStatus);
+    </script>
+</body>
+</html>
